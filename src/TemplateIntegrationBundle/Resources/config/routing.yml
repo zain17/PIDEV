@@ -1,0 +1,3 @@
+template_integration_homepage:
+    path:     /
+    defaults: { _controller: TemplateIntegrationBundle:Default:index }

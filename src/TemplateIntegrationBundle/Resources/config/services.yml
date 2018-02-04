@@ -1,0 +1,4 @@
+services:
+#    template_integration.example:
+#        class: TemplateIntegrationBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
