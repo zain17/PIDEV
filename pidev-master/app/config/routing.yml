@@ -1,0 +1,9 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+entite:
+    resource: "@EntiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
