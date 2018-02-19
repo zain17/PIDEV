@@ -1,0 +1,3 @@
+entite_homepage:
+    path:     /
+    defaults: { _controller: EntiteBundle:Default:index }
