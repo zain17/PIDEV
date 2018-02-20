@@ -1,4 +1,7 @@
 /.web-server-pid
+/.idea/*
+/.idea/workspace.xml
+.idea/*
 /app/config/parameters.yml
 /build/
 /phpunit.xml

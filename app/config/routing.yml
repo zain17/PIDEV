@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
@@ -6,8 +7,20 @@ evenement:
     resource: "@EvenementBundle/Resources/config/routing.yml"
     prefix:   /
 
+=======
+blog:
+    resource: "@BlogBundle/Resources/config/routing.yml"
+    prefix:   /
+evenement:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+>>>>>>> 47a4a664058851850c530d9389e2c149bff93915
 entite:
     resource: "@EntiteBundle/Resources/config/routing.yml"
     prefix:   /
-
-
