@@ -1,10 +1,10 @@
-evenement:
-    resource: "@EvenementBundle/Resources/config/routing.yml"
-    prefix:   /
-
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+evenement:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+    prefix:   /
 
 entite:
     resource: "@EntiteBundle/Resources/config/routing.yml"
