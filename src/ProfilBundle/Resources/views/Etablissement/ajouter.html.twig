@@ -1,9 +1,7 @@
-{% extends "::base.html.twig" %}
+{% extends "@Blog/Default/template.html.twig" %}
 
-{% block title %}ProfilBundle:Etablissement:ajouter{% endblock %}
-
-{% block body %}
-<h1>Welcome to the Etablissement:ajouter page</h1>
-    {{ form_start(form) }}
+{% block titre %}Ajouter etablissement {% endblock %}
+{% block content %}
+    {{ form_start(form)}}
     {{ form_end(form) }}
 {% endblock %}

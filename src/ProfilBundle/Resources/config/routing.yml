@@ -5,3 +5,7 @@ profil_homepage:
 ajouter:
     path:     /etablissement/ajouter
     defaults: { _controller: ProfilBundle:Etablissement:ajouter }
+list:
+    path:     /etablissement/list
+    defaults: { _controller: ProfilBundle:Etablissement:list }
+
