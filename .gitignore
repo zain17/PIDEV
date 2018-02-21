@@ -1,4 +1,6 @@
 /.web-server-pid
+.idea
+/.idea/
 /.idea/*
 /.idea/workspace.xml
 .idea/*
