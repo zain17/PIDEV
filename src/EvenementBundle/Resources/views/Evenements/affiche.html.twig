@@ -4,4 +4,31 @@
 
 {% block body %}
 <h1>Welcome to the Evenements:affiche page</h1>
+
+<h1>Liste des modele</h1>
+<table border =1 >
+    <tr>
+        <th>Id</th>
+        <th>Libelle</th>
+        <th>Pays</th>
+        <th>modifier</th>
+        <th>supprimer</th>
+        <th>image</th>
+
+
+    </tr>
+    {% for evenements in evenements %}
+    <tr>
+
+        <th>{{ evenements.nom }}</th>
+        <th>{{ evenements.description }}</th>
+        <th>{{ evenements.date }}</th>
+       <th> <a href="{{ path('modifier',{'id':evenements.id}) }}" >modifier</a></th>
+        <th><a href="{{ path('supprimer',{'id':evenements.id}) }}">supprimer</a></th>
+        <th><img src="{{ asset('bundles/blog/template/images/' ~ evenements.brochure) }}"  /></th>
+    </tr>
+    {% endfor %}
+
+</table>
+
 {% endblock %}

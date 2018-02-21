@@ -68,7 +68,7 @@ class Evenements
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank(message="Enter an image !")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @Assert\File(mimeTypes={ "image/pdf" })
      */
     private $brochure;
 
@@ -226,28 +226,5 @@ class Evenements
     {
         return $this->prix;
     }
-
-    /**
-     * Set brochure
-     *
-     * @param string $brochure
-     *
-     * @return Evenements
-     */
-    public function setBrochure($brochure)
-    {
-        $this->brochure = $brochure;
-
-        return $this;
-    }
-
-    /**
-     * Get brochure
-     *
-     * @return string
-     */
-    public function getBrochure()
-    {
-        return $this->brochure;
-    }
 }
+
