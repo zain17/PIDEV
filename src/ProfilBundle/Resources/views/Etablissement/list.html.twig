@@ -1,0 +1,31 @@
+{% extends "BlogBundle:Default:template.html.twig" %}
+{% block title %}ProfilBundle:Etablissement:consulter{% endblock %}
+
+{% block body %}
+    <center><h1>Welcome to the Etablissement:consulter page</h1>
+
+        <table border="3">
+            <tr>
+                <td>id</td>
+                <td>adresse</td>
+                <td>nom</td>
+                <td>gouvernorat</td>
+                <td>ville</td>
+                <td>note</td>
+                <td>horraire</td>
+                <td>Active</td>
+            </tr>
+            {% for etab in etablissements  %}
+                <tr>
+                    <td>{{  etab.id}}</td>
+                    <td>{{  etab.adresse }}</td>
+                    <td>{{  etab.nom }}</td>
+                    <td>{{  etab.gouvernorat }}</td>
+                    <td>{{  etab.ville }}</td>
+                    <td>{{  etab.ville }}</td>
+                    <td>{{  etab.ville }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </center>
+{% endblock %}
