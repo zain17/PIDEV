@@ -20,7 +20,12 @@ class Photo
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string",nullable=true)
+     */
+    private $chemin;
 
     /**
      * Get id
@@ -31,5 +36,28 @@ class Photo
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set chemin
+     *
+     * @param string $chemin
+     *
+     * @return Photo
+     */
+    public function setChemin($chemin)
+    {
+        $this->chemin = $chemin;
+
+        return $this;
+    }
+
+    /**
+     * Get chemin
+     *
+     * @return string
+     */
+    public function getChemin()
+    {
+        return $this->chemin;
+    }
+}
