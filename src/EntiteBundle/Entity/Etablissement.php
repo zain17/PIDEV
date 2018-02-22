@@ -84,6 +84,10 @@ class Etablissement
     private $estActive;
 
     /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Photo", mappedBy="etablissement")
+     */
+    private $photos;
+    /**
      * Get id
      *
      * @return int
@@ -307,5 +311,46 @@ class Etablissement
     public function getEstActive()
     {
         return $this->estActive;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add photo
+     *
+     * @param \EntiteBundle\Entity\Photo $photo
+     *
+     * @return Etablissement
+     */
+    public function addPhoto(\EntiteBundle\Entity\Photo $photo)
+    {
+        $this->photos[] = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Remove photo
+     *
+     * @param \EntiteBundle\Entity\Photo $photo
+     */
+    public function removePhoto(\EntiteBundle\Entity\Photo $photo)
+    {
+        $this->photos->removeElement($photo);
+    }
+
+    /**
+     * Get photos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
     }
 }

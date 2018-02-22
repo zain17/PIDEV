@@ -28,6 +28,11 @@ class Photo
     private $chemin;
 
     /**
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Etablissement", inversedBy="photos")
+     * @ORM\JoinColumn(name="etablissement_id_etab", referencedColumnName="id")
+     */
+    private $etablissement;
+    /**
      * Get id
      *
      * @return int
@@ -59,5 +64,29 @@ class Photo
     public function getChemin()
     {
         return $this->chemin;
+    }
+
+    /**
+     * Set etablissement
+     *
+     * @param \EntiteBundle\Entity\Etablissement $etablissement
+     *
+     * @return Photo
+     */
+    public function setEtablissement(\EntiteBundle\Entity\Etablissement $etablissement = null)
+    {
+        $this->etablissement = $etablissement;
+
+        return $this;
+    }
+
+    /**
+     * Get etablissement
+     *
+     * @return \EntiteBundle\Entity\Etablissement
+     */
+    public function getEtablissement()
+    {
+        return $this->etablissement;
     }
 }
