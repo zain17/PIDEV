@@ -1,25 +1,19 @@
 profil:
     resource: "@ProfilBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /profil
 
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
-
-evenement:
-    resource: "@EvenementBundle/Resources/config/routing.yml"
-    prefix:   /
-
 blog:
     resource: "@BlogBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /blog
 evenement:
     resource: "@EvenementBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /evenement
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-
 entite:
     resource: "@EntiteBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /entite

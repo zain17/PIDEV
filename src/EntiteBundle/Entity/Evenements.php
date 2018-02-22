@@ -3,6 +3,7 @@
 namespace EntiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Evenements
@@ -62,6 +63,14 @@ class Evenements
      * @ORM\Column(name="prix", type="float", nullable=true)
      */
     private $prix;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Enter an image !")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $brochure;
 
 
     /**
@@ -217,5 +226,28 @@ class Evenements
     {
         return $this->prix;
     }
-}
 
+    /**
+     * Set brochure
+     *
+     * @param string $brochure
+     *
+     * @return Evenements
+     */
+    public function setBrochure($brochure)
+    {
+        $this->brochure = $brochure;
+
+        return $this;
+    }
+
+    /**
+     * Get brochure
+     *
+     * @return string
+     */
+    public function getBrochure()
+    {
+        return $this->brochure;
+    }
+}

@@ -7,11 +7,11 @@ ajout:
     defaults: { _controller: EvenementBundle:Evenements:ajout }
 
 modifier:
-    path:     /modifier
+    path:     /modifier/{id}
     defaults: { _controller: EvenementBundle:Evenements:modifier }
 
-_supprimer:
-    path:     /Supprimer
+supprimer:
+    path:     /supprimer/{id}
     defaults: { _controller: EvenementBundle:Evenements:Supprimer }
 
 affiche:
