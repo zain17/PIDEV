@@ -1,7 +1,6 @@
 profil_homepage:
     path:     /
     defaults: { _controller: ProfilBundle:Default:index }
-
 ajouter:
     path:     /etablissement/ajouter
     defaults: { _controller: ProfilBundle:Etablissement:ajouter }
