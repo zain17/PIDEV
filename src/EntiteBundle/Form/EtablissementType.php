@@ -3,30 +3,36 @@
 namespace EntiteBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EvenementsType extends AbstractType
+class EtablissementType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom')->add('description')->add('date')->add('nbPlace')->add('lieu')
-            ->add('prix')
-            ->add('brochure',FileType::class,array('data_class'=>null))
-            ->add('Sauvgarder',SubmitType::class)
-            -> setMethod('POST');
+        $builder->
+        add('nom')
+            ->add('adresse')
+            ->add('gouvernorat')
+            ->add('ville')
+            ->add('note')
+            ->add('horraire')
+            ->add('longitude')
+            ->add('latitude')
+            ->add('estActive')
+            ->add('Enregistrer',SubmitType::class)
+            -> setMethod('POST');;
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'EntiteBundle\Entity\Evenements'
+            'data_class' => 'EntiteBundle\Entity\Etablissement'
         ));
     }
 
@@ -35,7 +41,7 @@ class EvenementsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'entitebundle_evenements';
+        return 'entitebundle_etablissement';
     }
 
 

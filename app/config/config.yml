@@ -5,11 +5,13 @@ imports:
     - { resource: "@EntiteBundle/Resources/config/services.yml" }
     - { resource: "@BlogBundle/Resources/config/services.yml" }
     - { resource: "@EvenementBundle/Resources/config/services.yml" }
+    - { resource: "@ProfilBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    image_directory: '%kernel.project_dir%/web/bundles/blog/template/images'
 
 framework:
     #esi: ~
