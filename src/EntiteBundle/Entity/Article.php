@@ -2,6 +2,9 @@
 
 namespace EntiteBundle\Entity;
 
+use Beelab\TagBundle\Tag\TaggableInterface;
+use Beelab\TagBundle\Tag\TagInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,8 +13,67 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="EntiteBundle\Repository\ArticleRepository")
  */
-class Article
+class Article implements  TaggableInterface
 {
+
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag")
+     */
+    protected $tags;
+
+    // note: if you generated code with SensioGeneratorBundle, you need
+    // to replace "Tag" with "TagInterface" where appropriate
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addTag(TagInterface $tag)
+    {
+        $this->tags[] = $tag;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeTag(TagInterface $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasTag(TagInterface $tag)
+    {
+        return $this->tags->contains($tag);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTagNames()
+    {
+        return empty($this->tagsText) ? [] : array_map('trim', explode(',', $this->tagsText));
+    }
     /**
      * @var int
      *
@@ -150,5 +212,33 @@ class Article
     {
         return $this->titre;
     }
+
+    protected $tagsTxt;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $updated;
+
+
+    /**
+     * @param string
+     */
+    public function setTagsText($tagsText)
+    {
+        $this->tagsTxt = $tagsText;
+        $this->updated = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function getTagsTxt()
+    {
+        $this->tagsTxt = implode(', ', $this->tags->toArray());
+
+        return $this->tagsTxt;
+    }
+
 }
 
