@@ -14,3 +14,19 @@ modifier_etab:
     path:     /etablissement/modifier/{idUpdate}
     defaults: { _controller: ProfilBundle:Etablissement:modifier }
 
+
+ajouter_photo:
+    path:     /photo/ajouter
+    defaults: { _controller: ProfilBundle:Photo:ajouter }
+
+supprimer_photo:
+    path:     /photo/supprimer
+    defaults: { _controller: ProfilBundle:Photo:supprimer }
+
+list_photo:
+    path:     /photo/list
+    defaults: { _controller: ProfilBundle:Photo:list }
+
+modifier_photo:
+    path:     photo/modifier
+    defaults: { _controller: ProfilBundle:Photo:modifier }
