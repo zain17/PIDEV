@@ -19,7 +19,8 @@ class EtablissementType extends AbstractType
         $builder->
             add('nom')
             ->add('adresse')
-            ->add('gouvernorat',ChoiceType::class, array(
+            ->add('gouvernorat',ChoiceType::class,
+                array(
                 'choices' => array(
                     'Ariana' => 'Ariana',
                     'Béja' => 'Beja',
@@ -46,8 +47,9 @@ class EtablissementType extends AbstractType
                     'Tunis' => 'Tunis',
                     'Zaghouan' => 'Zaghouan'
                 )))
-            ->add('ville',ChoiceType::class,array(
-                'choices'=>array('somecity')
+            ->add('ville',ChoiceType::class,
+                array(
+                'choices'=>array('tbolba'=>'Teboulba')
             ))
             ->add('note')
             ->add('horraire')

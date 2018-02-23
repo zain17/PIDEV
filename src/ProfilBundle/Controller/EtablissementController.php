@@ -15,7 +15,9 @@ class EtablissementController extends Controller
         $form=$this->createForm(EtablissementType::class,$etablissement);
         $form->handleRequest($request);
         if($form->isSubmitted()) {
-
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($etablissement);
+            $em->flush();
         }
         return $this->render('ProfilBundle:Etablissement:ajouter.html.twig', array(
             'form'=>$form->createView()
