@@ -1,8 +1,8 @@
 {% extends "BlogBundle:Default:template.html.twig" %}
 {% block title %}ProfilBundle:Etablissement:consulter{% endblock %}
 
-{% block body %}
-    <center><h1>Welcome to the Etablissement:consulter page</h1>
+{% block content %}
+    <center><h1>List des établissements</h1>
 
         <table border="3">
             <tr>
@@ -14,6 +14,7 @@
                 <td>note</td>
                 <td>horraire</td>
                 <td>Active</td>
+                <td>Effacer</td>
             </tr>
             {% for etab in etablissements  %}
                 <tr>
@@ -24,6 +25,10 @@
                     <td>{{  etab.ville }}</td>
                     <td>{{  etab.note }}</td>
                     <td>{{  etab.horraire }}</td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="{{ path('supprimer_etab',{'idDelete':etab.id}) }}" >X</a></td>
+                    <td><a href="{{ path('modifier_etab',{'idUpdate':etab.id}) }}" >M</a></td>
                 </tr>
             {% endfor %}
         </table>

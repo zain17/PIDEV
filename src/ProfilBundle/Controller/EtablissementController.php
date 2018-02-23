@@ -23,15 +23,35 @@ class EtablissementController extends Controller
             'form'=>$form->createView()
         ));
     }
-    public function deleteAction($id){
-
-    }
     public function listAction()
     {
         $em= $this->getDoctrine()->getManager();
         $etablissements=$em->getRepository("EntiteBundle:Etablissement")->findAll();
         return $this->render('@Profil/Etablissement/list.html.twig', array(
             "etablissements"=>$etablissements
+        ));
+    }
+
+    public function supprimerAction($idDelete)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $etab= $em->getRepository(Etablissement::class)->find($idDelete);
+        $em->remove($etab);
+        $em->flush();
+        return $this->redirectToRoute("list_etab");
+    }
+    public function modifierAction(Request $request,$idUpdate){
+        $em= $this->getDoctrine()->getManager();
+        $etabAModif=$em->getRepository("EntiteBundle:Etablissement")->find($idUpdate);
+        $form=$this->createForm(EtablissementType::class,$etabAModif);
+        $form->handleRequest($request);
+        if($form->isValid())
+        {
+            $em->flush();
+            return $this->redirectToRoute("list_etab");
+        }
+        return $this->render('@Profil/Etablissement/ajouter.html.twig', array(
+            "form"=>$form->createView()
         ));
     }
 }

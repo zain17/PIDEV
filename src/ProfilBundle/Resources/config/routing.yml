@@ -1,10 +1,16 @@
 profil_homepage:
     path:     /
     defaults: { _controller: ProfilBundle:Default:index }
-ajouter:
+ajouter_etab:
     path:     /etablissement/ajouter
     defaults: { _controller: ProfilBundle:Etablissement:ajouter }
-list:
+list_etab:
     path:     /etablissement/list
     defaults: { _controller: ProfilBundle:Etablissement:list }
+supprimer_etab:
+    path:     /etablissement/supprimer/{idDelete}
+    defaults: { _controller: ProfilBundle:Etablissement:supprimer }
+modifier_etab:
+    path:     /etablissement/modifier/{idUpdate}
+    defaults: { _controller: ProfilBundle:Etablissement:modifier }
 
