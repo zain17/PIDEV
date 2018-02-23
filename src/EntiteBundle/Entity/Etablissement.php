@@ -61,7 +61,12 @@ class Etablissement
      * @ORM\Column(type="string", nullable=true)
      */
     private $horraire;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $type;
     /**
      * @var float
      *
@@ -352,5 +357,29 @@ class Etablissement
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Etablissement
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

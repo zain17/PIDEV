@@ -7,8 +7,8 @@
         <table border="3">
             <tr>
                 <td>id</td>
-                <td>adresse</td>
                 <td>nom</td>
+                <td>adresse</td>
                 <td>gouvernorat</td>
                 <td>ville</td>
                 <td>note</td>
@@ -18,12 +18,12 @@
             {% for etab in etablissements  %}
                 <tr>
                     <td>{{  etab.id}}</td>
-                    <td>{{  etab.adresse }}</td>
                     <td>{{  etab.nom }}</td>
+                    <td>{{  etab.adresse }}</td>
                     <td>{{  etab.gouvernorat }}</td>
                     <td>{{  etab.ville }}</td>
-                    <td>{{  etab.ville }}</td>
-                    <td>{{  etab.ville }}</td>
+                    <td>{{  etab.note }}</td>
+                    <td>{{  etab.horraire }}</td>
                 </tr>
             {% endfor %}
         </table>
