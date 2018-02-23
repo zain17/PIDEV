@@ -30,3 +30,19 @@ list_photo:
 modifier_photo:
     path:     photo/modifier
     defaults: { _controller: ProfilBundle:Photo:modifier }
+
+ajouter:
+    path:     /utilisateur/ajouter
+    defaults: { _controller: ProfilBundle:Utilisateur:ajouter }
+
+supprimer:
+    path:     /utilisateur/supprimer
+    defaults: { _controller: ProfilBundle:Utilisateur:supprimer }
+
+modifier:
+    path:     /utilisateur/modifier
+    defaults: { _controller: ProfilBundle:Utilisateur:modifier }
+
+list:
+    path:     /utilisateur/list
+    defaults: { _controller: ProfilBundle:Utilisateur:list }
