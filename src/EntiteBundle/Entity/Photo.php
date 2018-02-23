@@ -23,7 +23,7 @@ class Photo
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string",nullable=true)
+     * @ORM\Column(name="chemin", type="string",nullable=true)
      */
     private $chemin;
 
