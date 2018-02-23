@@ -1,3 +1,7 @@
+map:
+    resource: "@MapBundle/Resources/config/routing.yml"
+    prefix:   /
+
 profil:
     resource: "@ProfilBundle/Resources/config/routing.yml"
     prefix:   /profil
