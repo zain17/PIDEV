@@ -1,3 +1,7 @@
+exp_avis:
+    resource: "@ExpAvisBundle/Resources/config/routing.yml"
+    prefix:   /
+
 reservation:
     resource: "@ReservationBundle/Resources/config/routing.yml"
     prefix:   /

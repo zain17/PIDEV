@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new ProfilBundle\ProfilBundle(),
             new MapBundle\MapBundle(),
             new ReservationBundle\ReservationBundle(),
+            new ExpAvisBundle\ExpAvisBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
