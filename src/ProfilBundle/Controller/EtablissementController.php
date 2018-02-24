@@ -54,4 +54,7 @@ class EtablissementController extends Controller
             "form"=>$form->createView()
         ));
     }
+    public function RechercheParGouvernorat(){
+
+    }
 }
