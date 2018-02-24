@@ -31,18 +31,18 @@ modifier_photo:
     path:     photo/modifier
     defaults: { _controller: ProfilBundle:Photo:modifier }
 
-ajouter:
+ajouter_utilisateur:
     path:     /utilisateur/ajouter
     defaults: { _controller: ProfilBundle:Utilisateur:ajouter }
 
-supprimer:
-    path:     /utilisateur/supprimer
+supprimer_utilisateur:
+    path:     /utilisateur/supprimer/{idDelete}
     defaults: { _controller: ProfilBundle:Utilisateur:supprimer }
 
-modifier:
-    path:     /utilisateur/modifier
+modifier_utilisateur:
+    path:     /utilisateur/modifier/{idUpdate}
     defaults: { _controller: ProfilBundle:Utilisateur:modifier }
 
-list:
+list_utilisateur:
     path:     /utilisateur/list
     defaults: { _controller: ProfilBundle:Utilisateur:list }

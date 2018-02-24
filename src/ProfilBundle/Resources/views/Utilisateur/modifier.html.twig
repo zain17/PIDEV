@@ -1,7 +1,10 @@
-{% extends "::base.html.twig" %}
+{% extends "@Blog/Default/template.html.twig" %}
 
 {% block title %}ProfilBundle:Utilisateur:modifier{% endblock %}
 
-{% block body %}
+{% block content %}
 <h1>Welcome to the Utilisateur:modifier page</h1>
+    {{ form_start(form) }}
+
+    {{ form_end(form) }}
 {% endblock %}
