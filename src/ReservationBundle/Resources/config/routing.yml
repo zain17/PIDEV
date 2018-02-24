@@ -1,3 +1,19 @@
 reservation_homepage:
     path:     /
     defaults: { _controller: ReservationBundle:Default:index }
+
+ajouter:
+    path:     /catalogue/ajouter
+    defaults: { _controller: ReservationBundle:Catalogue:ajouter }
+
+supprimer:
+    path:     /catalogue/supprimer
+    defaults: { _controller: ReservationBundle:Catalogue:supprimer }
+
+modifier:
+    path:     /catalogue/modifier
+    defaults: { _controller: ReservationBundle:Catalogue:modifier }
+
+list:
+    path:     /catalogue/list
+    defaults: { _controller: ReservationBundle:Catalogue:list }
