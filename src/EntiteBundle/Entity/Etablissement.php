@@ -93,6 +93,10 @@ class Etablissement
      */
     private $photos;
     /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Catalogue", mappedBy="etablissement")
+     */
+    private $catalogues;
+    /**
      * Get id
      *
      * @return int
@@ -381,5 +385,39 @@ class Etablissement
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Add catalogue
+     *
+     * @param \EntiteBundle\Entity\Catalogue $catalogue
+     *
+     * @return Etablissement
+     */
+    public function addCatalogue(\EntiteBundle\Entity\Catalogue $catalogue)
+    {
+        $this->catalogues[] = $catalogue;
+
+        return $this;
+    }
+
+    /**
+     * Remove catalogue
+     *
+     * @param \EntiteBundle\Entity\Catalogue $catalogue
+     */
+    public function removeCatalogue(\EntiteBundle\Entity\Catalogue $catalogue)
+    {
+        $this->catalogues->removeElement($catalogue);
+    }
+
+    /**
+     * Get catalogues
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCatalogues()
+    {
+        return $this->catalogues;
     }
 }

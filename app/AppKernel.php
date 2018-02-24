@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new \FOS\UserBundle\FOSUserBundle(),
             new ProfilBundle\ProfilBundle(),
             new MapBundle\MapBundle(),
+            new ReservationBundle\ReservationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

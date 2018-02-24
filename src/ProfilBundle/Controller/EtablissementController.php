@@ -54,7 +54,13 @@ class EtablissementController extends Controller
             "form"=>$form->createView()
         ));
     }
-    public function RechercheParGouvernorat(){
+    public function RechercheParGouvernoratAction(){
+
+    }
+    public  function RechercheParVilleAction(){
+
+    }
+    public function RechercheParTypeAction(){
 
     }
 }
