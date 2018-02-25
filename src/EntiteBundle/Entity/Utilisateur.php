@@ -38,6 +38,14 @@ class Utilisateur
      */
     private $latitude;
     /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="etablissement")
+     */
+    private $experiences;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="experience")
+     */
+    private $revues;
+    /**
      * Get id
      *
      * @return int

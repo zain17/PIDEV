@@ -97,6 +97,14 @@ class Etablissement
      */
     private $catalogues;
     /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="etablissement")
+     */
+    private $experiences;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="etablissement")
+     */
+    private $revues;
+    /**
      * Get id
      *
      * @return int

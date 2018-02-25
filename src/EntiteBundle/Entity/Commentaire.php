@@ -20,7 +20,11 @@ class Commentaire
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Revue", inversedBy="comments")
+     * @ORM\JoinColumn(name="revue_id", referencedColumnName="id",nullable=true)
+     */
+    private $revue;
 
     /**
      * Get id

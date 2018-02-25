@@ -20,8 +20,20 @@ class Revue
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-
+    /**
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Utilisateur", inversedBy="revues")
+     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id",nullable=false)
+     */
+    private $utilisateur;
+    /**
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Etablissement", inversedBy="revues")
+     * @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id",nullable=false)
+     */
+    private $etablissement;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Commentaire", mappedBy="revue")
+     */
+    private $comments;
     /**
      * Get id
      *
