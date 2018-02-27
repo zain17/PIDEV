@@ -84,3 +84,4 @@ fos_user:
             enabled: false
         form:
             type: EntiteBundle\Form\RegistrationType
+

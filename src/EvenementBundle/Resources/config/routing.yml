@@ -14,6 +14,16 @@ supprimer:
     path:     /supprimer/{id}
     defaults: { _controller: EvenementBundle:Evenements:Supprimer }
 
-affiche:
-    path:     /affiche
+aff:
+    path:     /affichage
     defaults: { _controller: EvenementBundle:Evenements:affiche }
+
+detail:
+    path:     /detail/{id}
+    defaults: { _controller: EvenementBundle:Evenements:detail }
+
+afficheu:
+    path:     /calendar
+    defaults: { _controller: EvenementBundle:Evenements:calendar }
+    options:
+     expose : true

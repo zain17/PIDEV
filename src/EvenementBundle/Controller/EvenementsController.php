@@ -2,13 +2,17 @@
 
 namespace EvenementBundle\Controller;
 
+use EntiteBundle\EntiteBundle;
 use EntiteBundle\Entity\Evenements;
 use EntiteBundle\Form\EvenementsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class EvenementsController extends Controller
 {
+
+    //ajout evenement
     public function ajoutAction(Request $request)
     {
 
@@ -36,6 +40,8 @@ class EvenementsController extends Controller
         ));
     }
 
+
+    //modifier un evenemts
     public function modifierAction(Request $request , $id)
     {
         $em=$this->getDoctrine()->getManager();
@@ -61,6 +67,7 @@ class EvenementsController extends Controller
         ));
     }
 
+    //supprimer evenemnt
     public function SupprimerAction($id)
     {
         $em=$this->getDoctrine()->getManager();
@@ -73,12 +80,40 @@ class EvenementsController extends Controller
         ));
     }
 
+    //affichage des évenements
     public function afficheAction()
     {
         $em=$this->getDoctrine()->getManager();
         $ev=$em->getRepository("EntiteBundle:Evenements")->findAll();
         return $this->render('EvenementBundle:Evenements:affiche.html.twig', array(
             'evenements'=>$ev
+        ));
+    }
+
+    //calendrier des evenemnts
+
+    public function calendarAction()
+    {
+
+
+
+        return $this->render('EvenementBundle:Evenements:calendar.html.twig', array(
+
+        ));
+
+    }
+
+
+    //detail d'un événements n°
+    public function detailAction($id){
+
+        $e=$this->getDoctrine()->getManager();
+        $ev=$e->getRepository(Evenements::class)->find($id);
+
+
+
+        return $this->render('EvenementBundle:Evenements:detailEv.html.twig',array(
+            'detail'=>$ev
         ));
     }
 

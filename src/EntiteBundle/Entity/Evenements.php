@@ -8,8 +8,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Evenements
  *
- * @ORM\Table(name="evenements")
  * @ORM\Entity(repositoryClass="EntiteBundle\Repository\EvenementsRepository")
+ * @ORM\Table(name="evenements")
+ *
  */
 class Evenements
 {
@@ -25,23 +26,46 @@ class Evenements
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=true)
+     * @ORM\Column(name="adresse", type="string", length=255)
+     */
+
+    private $adresse ;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tel", type="string", length=255)
+     */
+
+    private $tel ;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
     /**
-     * @var string
+     * @var date
      *
-     * @ORM\Column(name="date", type="string", length=255, nullable=true)
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
+
+    /**
+     * @var date
+     *
+     * @ORM\Column(name="dateF", type="date")
+     */
+    private $dateF;
 
     /**
      * @var int
@@ -53,14 +77,14 @@ class Evenements
     /**
      * @var string
      *
-     * @ORM\Column(name="lieu", type="string", length=255, nullable=true)
+     * @ORM\Column(name="lieu", type="string", length=255)
      */
     private $lieu;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float", nullable=true)
+     * @ORM\Column(name="prix", type="integer")
      */
     private $prix;
 
@@ -134,7 +158,7 @@ class Evenements
     /**
      * Set date
      *
-     * @param string $date
+     * @param date $date
      *
      * @return Evenements
      */
@@ -148,7 +172,7 @@ class Evenements
     /**
      * Get date
      *
-     * @return string
+     * @return date
      */
     public function getDate()
     {
@@ -249,5 +273,77 @@ class Evenements
     public function getBrochure()
     {
         return $this->brochure;
+    }
+
+    /**
+     * Set dateF.
+     *
+     * @param \DateTime $dateF
+     *
+     * @return Evenements
+     */
+    public function setDateF($dateF)
+    {
+        $this->dateF = $dateF;
+
+        return $this;
+    }
+
+    /**
+     * Get dateF.
+     *
+     * @return \DateTime
+     */
+    public function getDateF()
+    {
+        return $this->dateF;
+    }
+
+    /**
+     * Set adresse.
+     *
+     * @param string $adresse
+     *
+     * @return Evenements
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse.
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set tel.
+     *
+     * @param string $tel
+     *
+     * @return Evenements
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * Get tel.
+     *
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
     }
 }

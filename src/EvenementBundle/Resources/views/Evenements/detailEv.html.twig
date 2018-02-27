@@ -1,0 +1,173 @@
+
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+    <title>{% block titre %}Titre template{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="{{ asset('bundles/blog/template/assets/css/main.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+    #myCarousel {
+        width:100%;
+        height: 90%;
+    }
+
+    /*tours*/
+    .tm-home-section-1{position: relative ; }
+    .section-margin-top{margin-top: 50px ;}
+    .tm-section-header{margin-bottom: 70%; overflow: hidden ; width: 100%;}
+    .tm-section-title{text-align: center ; text-transform: uppercase; font-size: 36px ;font-weight: 100 ;}
+    hr{border-top: 1px solid #111010 ;
+    margin-top : 45px ;}
+    h2{font-family: 'Open Sans', sans-serif ; }
+    h2{padding:0 ; margin-bottom : 10% ;}
+
+    .tm-tours-box-1 {width: 100% ;  margin-bottom: 50px ;}
+    .tm-tours-box-1-info {background: white ;padding : 40px ;overflow: hidden ;}
+    .tm-tours-box-1-link  {overflow: hidden ;}
+   .tm-tours-box-1-info-left{border-right: 1px solid #B1B1B1;
+       padding-right: 30px;}
+   .tm-tours-box-1-info-right{padding-left: 30px;}
+    .tm-tours-box-1-info-right,.tm-tours-box-1-info-left { float: left;
+        width: 50%;}
+    .tours-1-description {line-height: 1.8;}
+    .gray-text {color: #B1B1B1;}
+    p{font-family: 'Open Sans', sans-serif;}
+    a{font-family: 'Open Sans', sans-serif;}
+
+    .tm-tours-box-1-link-left , .tm-tours-box-1-link-right {    color: white;
+        height: 60px;
+    }
+
+    .tm-tours-box-1-link-left {background-color: #87B7C3;
+        padding: 20px 30px;
+        float: left;
+        width: 75%;
+        text-transform: uppercase;}
+
+    .tm-tours-box-1-link-right {float: left;
+        background-color: #87B7C3;
+        font-weight: 400;
+        font-size: 25px;
+        display: block;
+        padding: 10px 30px ;
+        width: 25%;
+        transition: all 0.3s;
+        text-align: center;}
+
+</style>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a class="logo" href="index.html">BonPlan</a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        {% block elementsMenu %}
+            <li><a href="index.html">Home</a></li>
+            <li><a href="elements.html">Elements</a></li>
+            <li><a href="generic.html">Generic</a></li>
+        {% endblock %}
+    </ul>
+</nav>
+
+<!-- Banner -->
+
+
+
+
+<section class="container tm-home-section-1" id="more">
+
+<div class="section-margin-top">
+            <div class="row">
+
+                <div class="tm-section-header">
+                    <div class="col-lg-3 "><hr></div>
+                    <div class="col-lg-6 "><h2 class="tm-section-title">{{ detail.nom }}</h2></div>
+                    <div class="col-lg-3"><hr></div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="tm-tours-box-1">
+                <img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="image" style="width:100%;" class="img-responsive">
+                <div class="tm-tours-box-1-info">
+                    <div class="tm-tours-box-1-info-left">
+                        <p class="text-uppercase margin-bottom-20">NOM</p>
+                        <p class="text-uppercase margin-bottom-20"></p>
+
+                        <p class="gray-text"> <span class="glyphicon glyphicon-calendar"></span> 28 March 2084</p>
+                        <p class="gray-text">  Adresse : </p>
+                        <p class="gray-text">  Tel: </p>
+
+
+
+                    </div>
+                    <div class="tm-tours-box-1-info-right">
+                        <p class="gray-text tours-1-description">Lorem quis bibendum auctor, nisi elit consequat ipsum, sec sagittis sem nibh id elit.</p>
+                        <p class="gray-text tours-1-description">Prix</p>
+
+                    </div>
+                </div>
+
+                <div class="tm-tours-box-1-link">
+                    <div class="tm-tours-box-1-link-left">
+                        Duration: 8 days
+                    </div>
+                    <a href="#" class="tm-tours-box-1-link-right">
+                        Je Participe !
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+<!-- Footer -->
+
+
+
+
+<!-- Scripts -->
+<script src="{{ asset('bundles/blog/template/assets/js/browser.min.js') }}"></script>
+<script src="{{ asset('bundles/blog/template/assets/js/breakpoints.min.js') }}"></script>
+<script src="{{ asset('bundles/blog/template/assets/js/util.js') }}"></script>
+<script src="{{ asset('bundles/blog/template/assets/js/main.js') }}"></script>
+<!--flexSlider-->
+
+
+
+
+</body>
+</html>
+
