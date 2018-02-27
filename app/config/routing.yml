@@ -1,14 +1,14 @@
 exp_avis:
     resource: "@ExpAvisBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /expavis
 
 reservation:
     resource: "@ReservationBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /reservation
 
 map:
     resource: "@MapBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /map
 
 profil:
     resource: "@ProfilBundle/Resources/config/routing.yml"

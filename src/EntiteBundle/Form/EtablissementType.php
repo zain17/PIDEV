@@ -4,6 +4,7 @@ namespace EntiteBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,9 +17,19 @@ class EtablissementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->
-            add('nom')
+        $builder
+            ->add('nom')
+            ->add('photos',FileType::class,
+                array(
+                    'data_class' => null,
+                    'mapped' => false,
+                    "label" => "Files",
+                    "required" => true,
+                    "attr" => array(
+                        "multiple" => true)
+                ))
             ->add('adresse')
+            ->add('description')
             ->add('gouvernorat',ChoiceType::class,
                 array(
                 'choices' => array(
@@ -49,7 +60,7 @@ class EtablissementType extends AbstractType
                 )))
             ->add('ville',ChoiceType::class,
                 array(
-                'choices'=>array('tbolba'=>'Teboulba')
+                'choices'=>array('Ville'=>'Ville')
             ))
             ->add('note')
             ->add('horraire')

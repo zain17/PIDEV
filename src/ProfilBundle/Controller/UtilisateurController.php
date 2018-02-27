@@ -14,7 +14,7 @@ class UtilisateurController extends Controller
         $utilisateur=new Utilisateur();
         $form=$this->createForm(UtilisateurType::class,$utilisateur);
         $form->handleRequest($request);
-        if($form->isSubmitted()) {
+        if($form->isSubmitted() && $form->isValid()) {
             /**@var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
 
             $file=$utilisateur->getPhotoProfil();

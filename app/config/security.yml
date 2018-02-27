@@ -2,7 +2,6 @@
 # https://symfony.com/doc/current/security.html
 security:
 
-
     encoders:
             FOS\UserBundle\Model\UserInterface: sha512
 

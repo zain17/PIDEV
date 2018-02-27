@@ -3,6 +3,7 @@
 namespace ProfilBundle\Controller;
 
 use EntiteBundle\Entity\Etablissement;
+use EntiteBundle\Entity\Photo;
 use EntiteBundle\Form\EtablissementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,13 +13,24 @@ class EtablissementController extends Controller
     public function ajouterAction(Request $request)
     {
         $etablissement=new Etablissement();
+        $photo=new Photo();
         $form=$this->createForm(EtablissementType::class,$etablissement);
         $form->handleRequest($request);
         if($form->isSubmitted()) {
             $em=$this->getDoctrine()->getManager();
-            $em->persist($etablissement);
-            $em->flush();
+            foreach ($etablissement->getPhotos() as $value){
+                $file=$value;
+                $fileName = sha1(uniqid(mt_rand(), true)).'.'.$file->guessExtension();
+                $file->move($this->getParameter('image_directory'),$fileName);
+                $photo->setChemin($fileName);
+                $photo->setEtablissement($etablissement);
+                $em->persist($etablissement);
+                $em->persist($photo);
+                $em->flush();
+            }
+
         }
+
         return $this->render('ProfilBundle:Etablissement:ajouter.html.twig', array(
             'form'=>$form->createView()
         ));
@@ -26,8 +38,32 @@ class EtablissementController extends Controller
     public function listAction()
     {
         $em= $this->getDoctrine()->getManager();
-        $etablissements=$em->getRepository("EntiteBundle:Etablissement")->findAll();
+        $etablissementsCafee=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'café'], ['note'=> 'DESC'], 4, 0);
+        $etablissementsLoisirs=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'loisirs'], ['note'=> 'DESC'], 4, 0);
+        $etablissementsShoppings=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'shopping'], ['note'=> 'DESC'], 4, 0);
+        $etablissementsRestaurant=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'restaurant'], ['note'=> 'DESC'], 4, 0);
         return $this->render('@Profil/Etablissement/list.html.twig', array(
+            "Cafees"=>$etablissementsCafee,
+            "Loisirs"=>$etablissementsLoisirs,
+            "Shoppings"=>$etablissementsShoppings,
+            "Restaurants"=>$etablissementsRestaurant,
+        ));
+    }
+
+    public function listAllAction()
+    {
+        $em= $this->getDoctrine()->getManager();
+        $etablissements=$em->getRepository("EntiteBundle:Etablissement")->findAll(['note'=> 'DESC']);
+        return $this->render('@Profil/Etablissement/all.html.twig', array(
+            "etablissements"=>$etablissements
+        ));
+    }
+
+    public function listBestAction()
+    {
+        $em= $this->getDoctrine()->getManager();
+        $etablissements=$em->getRepository("EntiteBundle:Etablissement")->findAll(['note'=> 'DESC'], null, 10, 0);
+        return $this->render('all.html.twig', array(
             "etablissements"=>$etablissements
         ));
     }

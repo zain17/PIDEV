@@ -26,6 +26,12 @@ class Etablissement
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $nom;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @var string
@@ -104,6 +110,56 @@ class Etablissement
      * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="etablissement")
      */
     private $revues;
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+
+    /**
+     * @param mixed $experiences
+     */
+    public function setExperiences($experiences)
+    {
+        $this->experiences = $experiences;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRevues()
+    {
+        return $this->revues;
+    }
+
+    /**
+     * @param mixed $revues
+     */
+    public function setRevues($revues)
+    {
+        $this->revues = $revues;
+    }
+
+
     /**
      * Get id
      *
@@ -372,6 +428,30 @@ class Etablissement
     }
 
     /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $photos
+     */
+    public function setPhotos($photos)
+    {
+        $this->photos = $photos;
+    }
+
+    /**
+     * @param mixed $catalogues
+     */
+    public function setCatalogues($catalogues)
+    {
+        $this->catalogues = $catalogues;
+    }
+
+    /**
      * Set type
      *
      * @param string $type
@@ -427,5 +507,53 @@ class Etablissement
     public function getCatalogues()
     {
         return $this->catalogues;
+    }
+
+    /**
+     * Add experience
+     *
+     * @param \EntiteBundle\Entity\Experience $experience
+     *
+     * @return Etablissement
+     */
+    public function addExperience(\EntiteBundle\Entity\Experience $experience)
+    {
+        $this->experiences[] = $experience;
+
+        return $this;
+    }
+
+    /**
+     * Remove experience
+     *
+     * @param \EntiteBundle\Entity\Experience $experience
+     */
+    public function removeExperience(\EntiteBundle\Entity\Experience $experience)
+    {
+        $this->experiences->removeElement($experience);
+    }
+
+    /**
+     * Add revue
+     *
+     * @param \EntiteBundle\Entity\Revue $revue
+     *
+     * @return Etablissement
+     */
+    public function addRevue(\EntiteBundle\Entity\Revue $revue)
+    {
+        $this->revues[] = $revue;
+
+        return $this;
+    }
+
+    /**
+     * Remove revue
+     *
+     * @param \EntiteBundle\Entity\Revue $revue
+     */
+    public function removeRevue(\EntiteBundle\Entity\Revue $revue)
+    {
+        $this->revues->removeElement($revue);
     }
 }
