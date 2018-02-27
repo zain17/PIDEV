@@ -1,3 +1,9 @@
 blog_homepage:
     path:     /
     defaults: { _controller: BlogBundle:Default:index }
+blog_ajouterArticle:
+    path: /ajouterArticle
+    defaults: { _controller: BlogBundle:Blog:ajouterArticle }
+blog_lireArticle:
+    path: /lireArticle/{id}
+    defaults: { _controller: BlogBundle:Blog:lireArticle }

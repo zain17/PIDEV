@@ -1,0 +1,32 @@
+{% extends '@Blog/Default/template.html.twig' %}
+{% block css %}
+    <link  rel="stylesheet" href="{{ asset('bundles/blog/tinymce/js/tinymce/skins/lightgray/skin.min.css') }}">
+{% endblock %}
+{% block content %}
+    <section class="wrapper">
+        <div class="inner">
+            <h1>
+            {{ article.titre }}
+            </h1>
+            <div>
+            {{ article.texte | raw }}
+            </div>
+            {#
+            <form method="post">
+            <textarea class="tinymce" name="texte">
+                {{ article.texte }}
+            </textarea>
+                <input type="submit" value="Publier">
+            </form>
+            #}
+        </div></section>
+    <script type="text/javascript" src="{{ asset('bundles/blog/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/blog/tinymce/js/tinymce/jquery.tinymce.min.js') }}"></script>
+    {#
+    <script>
+        tinymce.init({
+            selector: 'textarea.tinymce'
+        })
+    </script>
+    #}
+{% endblock %}

@@ -29,6 +29,18 @@ class Article
     private $texte;
 
     /**
+     * @var integer
+     * @ORM\Column(name="vote", type="integer")
+     */
+    private $vote = 0;
+
+    /**
+     * @var string
+     * @ORM\Column(name="titre", type="text")
+     */
+    private $titre;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="auteur", type="integer")
@@ -44,6 +56,27 @@ class Article
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get vote
+     * @return int
+     */
+    public function getVote()
+    {
+        return $this->vote;
+    }
+
+    /**
+     * Set vote
+     * @param int $vote
+     *
+     * @return Article
+     */
+    public function setVote($vote)
+    {
+        $this->vote = $vote;
+        return $this;
     }
 
     /**
@@ -92,6 +125,30 @@ class Article
     public function getAuteur()
     {
         return $this->auteur;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Article
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
     }
 }
 

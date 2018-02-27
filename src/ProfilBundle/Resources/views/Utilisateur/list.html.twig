@@ -1,0 +1,26 @@
+{% extends "@Blog/Default/template.html.twig" %}
+
+{% block title %}ProfilBundle:Utilisateur:list{% endblock %}
+
+{% block content %}
+<center><h1>List des utilisateurs</h1>
+
+    <table border="3">
+        <tr>
+            <td>id</td>
+            <td>Photo</td>
+        </tr>
+        {% for user in utilisateurs  %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.photoProfil }}</td>
+            <td></td>
+            <td></td>
+            <td><a href="{{ path('supprimer_utilisateur',{'idDelete':user.id}) }}" >X</a></td>
+            <td><a href="{{ path('modifier_utilisateur',{'idUpdate':user.id}) }}" >M</a></td>
+            <th><img src="{{ asset('bundles/blog/template/images/' ~ user.photoProfil ) }}"  /></th>
+        </tr>
+        {% endfor %}
+    </table>
+</center>
+{% endblock %}

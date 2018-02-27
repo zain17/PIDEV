@@ -61,7 +61,12 @@ class Etablissement
      * @ORM\Column(type="string", nullable=true)
      */
     private $horraire;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $type;
     /**
      * @var float
      *
@@ -83,6 +88,22 @@ class Etablissement
      */
     private $estActive;
 
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Photo", mappedBy="etablissement")
+     */
+    private $photos;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Catalogue", mappedBy="etablissement")
+     */
+    private $catalogues;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="etablissement")
+     */
+    private $experiences;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="etablissement")
+     */
+    private $revues;
     /**
      * Get id
      *
@@ -307,5 +328,104 @@ class Etablissement
     public function getEstActive()
     {
         return $this->estActive;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add photo
+     *
+     * @param \EntiteBundle\Entity\Photo $photo
+     *
+     * @return Etablissement
+     */
+    public function addPhoto(\EntiteBundle\Entity\Photo $photo)
+    {
+        $this->photos[] = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Remove photo
+     *
+     * @param \EntiteBundle\Entity\Photo $photo
+     */
+    public function removePhoto(\EntiteBundle\Entity\Photo $photo)
+    {
+        $this->photos->removeElement($photo);
+    }
+
+    /**
+     * Get photos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Etablissement
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add catalogue
+     *
+     * @param \EntiteBundle\Entity\Catalogue $catalogue
+     *
+     * @return Etablissement
+     */
+    public function addCatalogue(\EntiteBundle\Entity\Catalogue $catalogue)
+    {
+        $this->catalogues[] = $catalogue;
+
+        return $this;
+    }
+
+    /**
+     * Remove catalogue
+     *
+     * @param \EntiteBundle\Entity\Catalogue $catalogue
+     */
+    public function removeCatalogue(\EntiteBundle\Entity\Catalogue $catalogue)
+    {
+        $this->catalogues->removeElement($catalogue);
+    }
+
+    /**
+     * Get catalogues
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCatalogues()
+    {
+        return $this->catalogues;
     }
 }

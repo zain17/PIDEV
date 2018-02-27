@@ -3,9 +3,11 @@
 namespace EntiteBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class EtablissementType extends AbstractType
 {
@@ -15,10 +17,40 @@ class EtablissementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->
-        add('nom')
+            add('nom')
             ->add('adresse')
-            ->add('gouvernorat')
-            ->add('ville')
+            ->add('gouvernorat',ChoiceType::class,
+                array(
+                'choices' => array(
+                    'Ariana' => 'Ariana',
+                    'Béja' => 'Beja',
+                    'Ben Arous' => 'BenArous',
+                    'Bizerte' => 'Bizerte',
+                    'Gabès' => 'Gabes',
+                    'Gafsa' => 'Gafsa',
+                    'Jendouba' => 'Jendouba',
+                    'Kairouan' => 'Kairouan',
+                    'Kasserine' => 'Kasserine',
+                    'Kébili' => 'Kebili',
+                    'Le Kef' => 'LeKef',
+                    'Mahdia' => 'Mahdia',
+                    'La Manouba' => 'LaManouba',
+                    'Médenine' => 'Medenine',
+                    'Monastir' => 'Monastir',
+                    'Nabeul' => 'Nabeul',
+                    'Sfax' => 'Sfax',
+                    'Sidi Bouzid' => 'SidiBouzid',
+                    'Siliana' => 'Siliana',
+                    'Sousse' => 'Sousse',
+                    'Tataouine' => 'Tataouine',
+                    'Tozeur' => 'Tozeur',
+                    'Tunis' => 'Tunis',
+                    'Zaghouan' => 'Zaghouan'
+                )))
+            ->add('ville',ChoiceType::class,
+                array(
+                'choices'=>array('tbolba'=>'Teboulba')
+            ))
             ->add('note')
             ->add('horraire')
             ->add('longitude')

@@ -1,0 +1,4 @@
+services:
+#    exp_avis.example:
+#        class: ExpAvisBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

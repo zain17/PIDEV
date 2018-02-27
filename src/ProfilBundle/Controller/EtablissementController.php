@@ -15,14 +15,13 @@ class EtablissementController extends Controller
         $form=$this->createForm(EtablissementType::class,$etablissement);
         $form->handleRequest($request);
         if($form->isSubmitted()) {
-
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($etablissement);
+            $em->flush();
         }
         return $this->render('ProfilBundle:Etablissement:ajouter.html.twig', array(
             'form'=>$form->createView()
         ));
-    }
-    public function deleteAction($id){
-
     }
     public function listAction()
     {
@@ -31,5 +30,37 @@ class EtablissementController extends Controller
         return $this->render('@Profil/Etablissement/list.html.twig', array(
             "etablissements"=>$etablissements
         ));
+    }
+
+    public function supprimerAction($idDelete)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $etab= $em->getRepository(Etablissement::class)->find($idDelete);
+        $em->remove($etab);
+        $em->flush();
+        return $this->redirectToRoute("list_etab");
+    }
+    public function modifierAction(Request $request,$idUpdate){
+        $em= $this->getDoctrine()->getManager();
+        $etabAModif=$em->getRepository("EntiteBundle:Etablissement")->find($idUpdate);
+        $form=$this->createForm(EtablissementType::class,$etabAModif);
+        $form->handleRequest($request);
+        if($form->isValid())
+        {
+            $em->flush();
+            return $this->redirectToRoute("list_etab");
+        }
+        return $this->render('@Profil/Etablissement/ajouter.html.twig', array(
+            "form"=>$form->createView()
+        ));
+    }
+    public function RechercheParGouvernoratAction(){
+
+    }
+    public  function RechercheParVilleAction(){
+
+    }
+    public function RechercheParTypeAction(){
+
     }
 }
