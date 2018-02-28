@@ -146,7 +146,7 @@
 
 </style>
 </head>
-<body class="is-preload">
+<body class="is-preload" onload="myFunction()">
 
 <!-- Header -->
 <header id="header">
@@ -262,11 +262,11 @@
                     </ul>
                     <form class="form-inline" role="form" method="POST">
                         <div class="form-group">
-                            <input class="form-control" type="text" name="contenu" placeholder="Your comments" />
+                            <input class="form-control" type="text" name="contenu" value="{{ commentaire.contenu }}" placeholder="Your comments" />
                         </div>
                         <input type="hidden" name="idc" value="">
                         <div class="form-group">
-                            <button type="submit"  class="btn btn-default">Ajouter</button>
+                            <button type="submit"  id="x" class="btn btn-default" >Modifier</button>
                         </div>
                     </form>
                 </div>
@@ -290,6 +290,13 @@
 <script src="{{ asset('bundles/blog/template/assets/js/util.js') }}"></script>
 <script src="{{ asset('bundles/blog/template/assets/js/main.js') }}"></script>
 <!--flexSlider-->
+<script>
+    function myFunction() {
+        var elmnt = document.getElementById("x");
+        elmnt.scrollIntoView();
+    }
+
+</script>
 
 
 

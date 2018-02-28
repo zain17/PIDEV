@@ -29,7 +29,7 @@ class Evenements
      * @ORM\Column(name="adresse", type="string", length=255)
      */
 
-    private $adresse ;
+    private $adresse;
 
     /**
      * @var string
@@ -37,7 +37,7 @@ class Evenements
      * @ORM\Column(name="tel", type="string", length=255)
      */
 
-    private $tel ;
+    private $tel;
 
     /**
      * @var string
@@ -95,6 +95,11 @@ class Evenements
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $brochure;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EvenementBundle\Entity\CommentaireE", mappedBy="Evenements")
+     */
+    private $commentaire;
 
 
     /**
@@ -297,5 +302,53 @@ class Evenements
     public function getDateF()
     {
         return $this->dateF;
+    }
+
+    /**
+     * Set adresse.
+     *
+     * @param string $adresse
+     *
+     * @return Evenements
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse.
+     *
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set tel.
+     *
+     * @param string $tel
+     *
+     * @return Evenements
+     */
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * Get tel.
+     *
+     * @return string
+     */
+    public function getTel()
+    {
+        return $this->tel;
     }
 }

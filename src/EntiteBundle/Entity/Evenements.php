@@ -29,7 +29,7 @@ class Evenements
      * @ORM\Column(name="adresse", type="string", length=255)
      */
 
-    private $adresse ;
+    private $adresse;
 
     /**
      * @var string
@@ -37,7 +37,7 @@ class Evenements
      * @ORM\Column(name="tel", type="string", length=255)
      */
 
-    private $tel ;
+    private $tel;
 
     /**
      * @var string
@@ -95,6 +95,11 @@ class Evenements
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $brochure;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EvenementBundle\Entity\CommentaireE", mappedBy="Evenements")
+     */
+    private $commentaire;
 
 
     /**
@@ -345,5 +350,48 @@ class Evenements
     public function getTel()
     {
         return $this->tel;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add commentaire.
+     *
+     * @param \EvenementBundle\Entity\CommentaireE $commentaire
+     *
+     * @return Evenements
+     */
+    public function addCommentaire(\EvenementBundle\Entity\CommentaireE $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire.
+     *
+     * @param \EvenementBundle\Entity\CommentaireE $commentaire
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCommentaire(\EvenementBundle\Entity\CommentaireE $commentaire)
+    {
+        return $this->commentaire->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaire.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

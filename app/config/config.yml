@@ -75,6 +75,7 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
@@ -86,5 +87,5 @@ fos_user:
         confirmation:
             enabled: false
         form:
-            type: EntiteBundle\Form\RegistrationType
+               type: EntiteBundle\Form\RegistrationType
 

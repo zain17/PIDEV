@@ -24,13 +24,9 @@ class AppKernel extends Kernel
             new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new ProfilBundle\ProfilBundle(),
-<<<<<<< HEAD
-
-=======
             new MapBundle\MapBundle(),
             new ReservationBundle\ReservationBundle(),
             new ExpAvisBundle\ExpAvisBundle(),
->>>>>>> c0eb860592aaedf60415d0128cb1c40aeb81a18a
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

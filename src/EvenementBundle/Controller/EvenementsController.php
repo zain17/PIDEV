@@ -8,6 +8,8 @@ use EntiteBundle\Form\EvenementsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use EvenementBundle\Entity\CommentaireE ;
+
 
 class EvenementsController extends Controller
 {
@@ -105,15 +107,32 @@ class EvenementsController extends Controller
 
 
     //detail d'un événements n°
-    public function detailAction($id){
+    public function detailAction($id,Request $request){
 
-        $e=$this->getDoctrine()->getManager();
-        $ev=$e->getRepository(Evenements::class)->find($id);
+        $em=$this->getDoctrine()->getManager();
+        $ev=$em->getRepository(Evenements::class)->find($id);
+
+
+      //ajout commentaire
+        $m=new CommentaireE();
+        if($request->isMethod('POST')){
+            $m->setContenu($request->get('contenu'));
+            $m->setEve($ev);
+            $em->persist($m);
+            $em->flush();
+        }
+
+        //affiche commentaire
+        $c=$em->getRepository("EvenementBundle:CommentaireE")->findByeve($id);
+
+        //supprimer commentaire
+
 
 
 
         return $this->render('EvenementBundle:Evenements:detailEv.html.twig',array(
-            'detail'=>$ev
+            'detail'=>$ev,
+            'commentaire'=>$c
         ));
     }
 

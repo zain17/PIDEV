@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
@@ -15,7 +14,7 @@ blog:
     resource: "@BlogBundle/Resources/config/routing.yml"
     prefix:   /
 
-=======
+
 exp_avis:
     resource: "@ExpAvisBundle/Resources/config/routing.yml"
     prefix:   /
@@ -38,14 +37,14 @@ app:
 blog:
     resource: "@BlogBundle/Resources/config/routing.yml"
     prefix:   /blog
->>>>>>> c0eb860592aaedf60415d0128cb1c40aeb81a18a
+
 evenement:
     resource: "@EvenementBundle/Resources/config/routing.yml"
     prefix:   /evenement
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-<<<<<<< HEAD
+
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
@@ -53,8 +52,7 @@ fos_js_routing:
 ancarebeca_fullcalendar:
     resource: "@FullCalendarBundle/Resources/config/routing.yml"
 
-=======
->>>>>>> c0eb860592aaedf60415d0128cb1c40aeb81a18a
+
 entite:
     resource: "@EntiteBundle/Resources/config/routing.yml"
     prefix:   /entite
