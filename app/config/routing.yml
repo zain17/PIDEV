@@ -27,6 +27,15 @@ evenement:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
+
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+ancarebeca_fullcalendar:
+    resource: "@FullCalendarBundle/Resources/config/routing.yml"
+
+
 entite:
     resource: "@EntiteBundle/Resources/config/routing.yml"
     prefix:   /entite

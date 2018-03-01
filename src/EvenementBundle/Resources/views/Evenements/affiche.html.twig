@@ -1,34 +1,224 @@
-{% extends "::base.html.twig" %}
 
-{% block title %}EvenementBundle:Evenements:affiche{% endblock %}
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+    <title>{% block titre %}Titre template{% endblock %}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="{{ asset('bundles/blog/template/assets/css/main.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-{% block body %}
-<h1>Welcome to the Evenements:affiche page</h1>
+<style>
+    #myCarousel {
+        width:100%;
+        height: 90%;
+    }
 
-<h1>Liste des modele</h1>
-<table border =1 >
-    <tr>
-        <th>Id</th>
-        <th>Libelle</th>
-        <th>Pays</th>
-        <th>modifier</th>
-        <th>supprimer</th>
-        <th>image</th>
+    /*tours*/
+    .tm-home-section-1{position: relative ; }
+    .section-margin-top{margin-top: 50px ;}
+    .tm-section-header{margin-bottom: 70%; overflow: hidden ; width: 100%;}
+    .tm-section-title{text-align: center ; text-transform: uppercase; font-size: 36px ;font-weight: 100 ;}
+    hr{border-top: 1px solid #111010 ; margin-top : 45px  ;}
+    h2{font-family: 'Open Sans', sans-serif ; }
+    h2{padding:0 ; margin-bottom : 10% ;}
+
+    .tm-tours-box-1 {width: 100% ; max-width: 532px ; margin-bottom: 50px ;}
+    .tm-tours-box-1-info {background: white ;padding : 40px ;overflow: hidden ;}
+    .tm-tours-box-1-link  {overflow: hidden ;}
+   .tm-tours-box-1-info-left{border-right: 1px solid #B1B1B1;
+       padding-right: 30px;}
+   .tm-tours-box-1-info-right{padding-left: 30px;}
+    .tm-tours-box-1-info-right,.tm-tours-box-1-info-left { float: left;
+        width: 50%;}
+    .tours-1-description {line-height: 1.8;}
+    .gray-text {color: #B1B1B1;}
+    p{font-family: 'Open Sans', sans-serif;}
+
+    .tm-tours-box-1-link-left , .tm-tours-box-1-link-right {    color: white;
+        height: 60px;
+    }
+
+    .tm-tours-box-1-link-left {background-color: #87B7C3;
+        padding: 20px 30px;
+        float: left;
+        width: 75%;
+        text-transform: uppercase;}
+
+    .tm-tours-box-1-link-right {float: left;
+        background-color: #87B7C3;
+        font-weight: 600;
+        font-size: 18px;
+        display: block;
+        padding: 5px 30px ;
+        width: 25%;
+        transition: all 0.3s;
+        text-align: center;}
+
+</style>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a class="logo" href="index.html">BonPlan</a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        {% block elementsMenu %}
+            <li><a href="index.html">Home</a></li>
+            <li><a href="elements.html">Elements</a></li>
+            <li><a href="generic.html">Generic</a></li>
+        {% endblock %}
+    </ul>
+</nav>
+
+<!-- Banner -->
+
+<div id="banner">
 
 
-    </tr>
-    {% for evenements in evenements %}
-    <tr>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
 
-        <th>{{ evenements.nom }}</th>
-        <th>{{ evenements.description }}</th>
-        <th>{{ evenements.date }}</th>
-       <th> <a href="{{ path('modifier',{'id':evenements.id}) }}" >modifier</a></th>
-        <th><a href="{{ path('supprimer',{'id':evenements.id}) }}">supprimer</a></th>
-        <th><img src="{{ asset('bundles/blog/template/images/' ~ evenements.brochure) }}"  /></th>
-    </tr>
-    {% endfor %}
 
-</table>
 
-{% endblock %}
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="Los Angeles" style="width:100% ; height: 10%;">
+            <div class="carousel-caption d-none d-md-block">
+                <h3>boss</h3>
+                <p>zab alik</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="https://www.w3schools.com/bootstrap/la.jpg" alt="Chicago" style="width:100%;">
+        </div>
+
+        <div class="item">
+            <img src="https://www.w3schools.com/bootstrap/ny.jpg" alt="New york" style="width:100%;">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+</div>
+
+
+<section class="container tm-home-section-1" id="more">
+
+<div class="section-margin-top">
+            <div class="row">
+
+                <div class="tm-section-header">
+                    <div class="col-lg-3 "><hr></div>
+                    <div class="col-lg-6 "><h2 class="tm-section-title">Our Tours</h2></div>
+                    <div class="col-lg-3"><hr></div>
+
+
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="tm-tours-box-1">
+                        <img src="https://www.w3schools.com/bootstrap/chicago.jpg" alt="image" class="img-responsive">
+                        <div class="tm-tours-box-1-info">
+                            <div class="tm-tours-box-1-info-left">
+                                <p class="text-uppercase margin-bottom-20">Proin Gravida Nibhvel Lorem Quis Bind</p>
+                                <p class="gray-text">28 March 2084</p>
+                            </div>
+                            <div class="tm-tours-box-1-info-right">
+                                <p class="gray-text tours-1-description">Lorem quis bibendum auctor, nisi elit consequat ipsum, sec sagittis sem nibh id elit.</p>
+                            </div>
+                        </div>
+                        <div class="tm-tours-box-1-link">
+                            <div class="tm-tours-box-1-link-left">
+                                Duration: 8 days
+                            </div>
+                            <a href="#" class="tm-tours-box-1-link-right">
+                               Plus de Details ..
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="tm-tours-box-1">
+                        <img src="https://www.w3schools.com/bootstrap/la.jpg" alt="image" class="img-responsive">
+                        <div class="tm-tours-box-1-info">
+                            <div class="tm-tours-box-1-info-left">
+                                <p class="text-uppercase margin-bottom-20">Proin Gravida Nibhvel Lorem Quis Bind</p>
+                                <p class="gray-text">26 March 2084</p>
+                            </div>
+                            <div class="tm-tours-box-1-info-right">
+                                <p class="gray-text tours-1-description">Lorem quis bibendum auctor, nisi elit consequat ipsum, sec sagittis sem nibh id elit.</p>
+                            </div>
+                        </div>
+                        <div class="tm-tours-box-1-link">
+                            <div class="tm-tours-box-1-link-left">
+                                Duration: 9 days
+                            </div>
+                            <a href="#" class="tm-tours-box-1-link-right">
+                                plus de details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+</section>
+
+
+
+<!-- Footer -->
+
+
+
+
+<!-- Scripts -->
+<script src="{{ asset('bundles/blog/template/assets/js/browser.min.js') }}"></script>
+<script src="{{ asset('bundles/blog/template/assets/js/breakpoints.min.js') }}"></script>
+<script src="{{ asset('bundles/blog/template/assets/js/util.js') }}"></script>
+<script src="{{ asset('bundles/blog/template/assets/js/main.js') }}"></script>
+<!--flexSlider-->
+
+
+
+
+</body>
+</html>
+
