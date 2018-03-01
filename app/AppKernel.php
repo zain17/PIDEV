@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new BlogBundle\BlogBundle(),
             new EvenementBundle\EvenementBundle(),
             new \FOS\UserBundle\FOSUserBundle(),
+            new AncaRebeca\FullCalendarBundle\FullCalendarBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new ProfilBundle\ProfilBundle(),
             new MapBundle\MapBundle(),
             new ReservationBundle\ReservationBundle(),
