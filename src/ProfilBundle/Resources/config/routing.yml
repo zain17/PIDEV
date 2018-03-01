@@ -1,5 +1,5 @@
 ajouter_etab:
-    path:     /etablissement/ajouter
+    path:     /profile/etablissement/ajouter
     defaults: { _controller: ProfilBundle:Etablissement:ajouter }
 list_etab:
     path:     /etablissement/list

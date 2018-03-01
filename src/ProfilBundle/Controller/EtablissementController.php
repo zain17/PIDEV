@@ -13,22 +13,24 @@ class EtablissementController extends Controller
     public function ajouterAction(Request $request)
     {
         $etablissement=new Etablissement();
-        $photo=new Photo();
+//        $photo=new Photo();
         $form=$this->createForm(EtablissementType::class,$etablissement);
         $form->handleRequest($request);
-        if($form->isSubmitted()) {
+        if($form->isSubmitted() && !$this->getUser()->getEtablissement()&& $this->getUser()->getRoles()[0]=="ROLE_ETABLISSEMENT") {
             $em=$this->getDoctrine()->getManager();
-            foreach ($etablissement->getPhotos() as $value){
+           /* foreach ($etablissement->getPhotos() as $value){
                 $file=$value;
-                $fileName = sha1(uniqid(mt_rand(), true)).'.'.$file->guessExtension();
-                $file->move($this->getParameter('image_directory'),$fileName);
-                $photo->setChemin($fileName);
+//                $fileName= md5(uniqid()).'.'.$file->guessExtension();
+//                $file->move($this->getParameter('image_directory'),$fileName);
+//                $photo->setChemin($fileName);
                 $photo->setEtablissement($etablissement);
-                $em->persist($etablissement);
                 $em->persist($photo);
-                $em->flush();
-            }
 
+            }*/
+            $this->getUser()->setEtablissement($etablissement);
+            $em->persist($etablissement);
+            $em->flush();
+            return $this->redirectToRoute('fos_user_profile_show');
         }
 
         return $this->render('ProfilBundle:Etablissement:ajouter.html.twig', array(
@@ -38,7 +40,7 @@ class EtablissementController extends Controller
     public function listAction()
     {
         $em= $this->getDoctrine()->getManager();
-        $etablissementsCafee=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'café'], ['note'=> 'DESC'], 4, 0);
+        $etablissementsCafee=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'cafe'], ['note'=> 'DESC'], 4, 0);
         $etablissementsLoisirs=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'loisirs'], ['note'=> 'DESC'], 4, 0);
         $etablissementsShoppings=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'shopping'], ['note'=> 'DESC'], 4, 0);
         $etablissementsRestaurant=$em->getRepository("EntiteBundle:Etablissement")->findBy(['type'=> 'restaurant'], ['note'=> 'DESC'], 4, 0);
@@ -88,6 +90,16 @@ class EtablissementController extends Controller
         }
         return $this->render('@Profil/Etablissement/ajouter.html.twig', array(
             "form"=>$form->createView()
+        ));
+    }
+    public function coordonnesMap(){
+        $etablissements=$this->listAllAction();
+        $em= $this->getDoctrine()->getManager();
+        foreach($etablissements as $value){
+            $coordonnes=['langitudes'=>$value->getLongitude(),'latitudes'=>$value->getLatitude()];
+        }
+        return $this->render('@Map/Default/index.html.twig', array(
+            "coordonnes"=>$coordonnes
         ));
     }
     public function RechercheParGouvernoratAction(){

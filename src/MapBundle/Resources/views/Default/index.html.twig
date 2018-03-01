@@ -1,2 +1,6 @@
-{% extends "MapBundle:Default:index.html.twig" %}
-{% block  %}
+{% extends "MapBundle::base.html.twig" %}
+{% block  container %}
+    <input id="lat" type="hidden" value="{{ Latitudes }}"/>
+    <input id="lng" type="hidden" value="{{ Longitudes }}"/>
+    <div id="map-canvas" style="width: 500px;height: 380px;"></div>
+{% endblock %}

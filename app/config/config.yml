@@ -78,7 +78,7 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
-    user_class: EntiteBundle\Entity\UtilisateurAuth
+    user_class: EntiteBundle\Entity\Utilisateur
     from_email:
         address: "testapp@testapp.com"
         sender_name: "Test App"

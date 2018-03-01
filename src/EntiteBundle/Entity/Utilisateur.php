@@ -3,13 +3,15 @@
 namespace EntiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User;
+
 /**
  * Utilisateur
  *
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass="EntiteBundle\Repository\UtilisateurRepository")
  */
-class Utilisateur
+class Utilisateur extends User
 {
     /**
      * @var int
@@ -18,7 +20,7 @@ class Utilisateur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     /**
      * @var string
      *
@@ -45,6 +47,11 @@ class Utilisateur
      * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="experience")
      */
     private $revues;
+    /**
+     * @ORM\OneToOne(targetEntity="EntiteBundle\Entity\Etablissement", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $etablissement;
     /**
      * Get id
      *
@@ -91,6 +98,22 @@ class Utilisateur
         $this->langitude = $langitude;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEtablissement()
+    {
+        return $this->etablissement;
+    }
+
+    /**
+     * @param mixed $etablissement
+     */
+    public function setEtablissement($etablissement)
+    {
+        $this->etablissement = $etablissement;
     }
 
     /**

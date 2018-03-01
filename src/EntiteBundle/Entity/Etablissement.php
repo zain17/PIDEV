@@ -62,9 +62,9 @@ class Etablissement
     private $note;
 
     /**
-     * @var string
+     * @var datetime
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $horraire;
     /**
@@ -110,6 +110,7 @@ class Etablissement
      * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="etablissement")
      */
     private $revues;
+
 
     /**
      * @return string
@@ -289,31 +290,6 @@ class Etablissement
     {
         return $this->note;
     }
-
-    /**
-     * Set horraire
-     *
-     * @param string $horraire
-     *
-     * @return Etablissement
-     */
-    public function setHorraire($horraire)
-    {
-        $this->horraire = $horraire;
-
-        return $this;
-    }
-
-    /**
-     * Get horraire
-     *
-     * @return string
-     */
-    public function getHorraire()
-    {
-        return $this->horraire;
-    }
-
     /**
      * Set longitude
      *
@@ -555,5 +531,35 @@ class Etablissement
     public function removeRevue(\EntiteBundle\Entity\Revue $revue)
     {
         $this->revues->removeElement($revue);
+    }
+
+    public function __toString()
+    {
+        return "";
+    }
+
+
+    /**
+     * Set horraire.
+     *
+     * @param \DateTime|null $horraire
+     *
+     * @return Etablissement
+     */
+    public function setHorraire($horraire = null)
+    {
+        $this->horraire = $horraire;
+
+        return $this;
+    }
+
+    /**
+     * Get horraire.
+     *
+     * @return \DateTime|null
+     */
+    public function getHorraire()
+    {
+        return $this->horraire;
     }
 }

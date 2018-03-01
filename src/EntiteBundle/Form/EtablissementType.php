@@ -4,8 +4,10 @@ namespace EntiteBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,15 +21,7 @@ class EtablissementType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('photos',FileType::class,
-                array(
-                    'data_class' => null,
-                    'mapped' => false,
-                    "label" => "Files",
-                    "required" => true,
-                    "attr" => array(
-                        "multiple" => true)
-                ))
+//            ->add('photos',FileType::class,array('data_class'=>null))
             ->add('adresse')
             ->add('description')
             ->add('gouvernorat',ChoiceType::class,
@@ -58,17 +52,25 @@ class EtablissementType extends AbstractType
                     'Tunis' => 'Tunis',
                     'Zaghouan' => 'Zaghouan'
                 )))
+            ->add('type',ChoiceType::class,
+                array(
+                    'choices' => array(
+                        'Café' => 'cafe',
+                        'Loisirs' => 'loisirs',
+                        'Restaurant' => 'restaurant',
+                        'Shopping' => 'shopping'
+                    )))
             ->add('ville',ChoiceType::class,
                 array(
                 'choices'=>array('Ville'=>'Ville')
             ))
             ->add('note')
-            ->add('horraire')
+            ->add('horraire', TimeType::class)
             ->add('longitude')
             ->add('latitude')
             ->add('estActive')
             ->add('Enregistrer',SubmitType::class)
-            -> setMethod('POST');;
+            -> setMethod('POST');
     }/**
      * {@inheritdoc}
      */

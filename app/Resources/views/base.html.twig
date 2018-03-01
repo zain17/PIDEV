@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Grocery Store a Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <title>Bon Plan | {% block titre %} {% endblock %}</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,8 +18,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- js -->
     <script src="{{  asset( 'js/jquery-1.11.1.min.js' ) }}"></script>
     <!-- //js -->
-    <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+  {#  <link href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>#}
     <!-- start-smoth-scrolling -->
     <script type="text/javascript" src="{{  asset( 'js/move-top.js') }}"></script>
     <script type="text/javascript" src="{{  asset( 'js/easing.js') }}"></script>
@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header -->
 <div class="agileits_header">
     <div class="w3l_offers">
-        <a href="products.html">Today's special Offers !</a>
+        <a href="{{ path('best_etab') }}">Recommendations d'aujourd'hui!</a>
     </div>
     <div class="w3l_search">
         <form action="#" method="post">
@@ -49,12 +49,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="w3l_header_right">
         <ul>
             <li class="dropdown profile_details_drop">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret">{{ app.user.username }}</span></a>
                 <div class="mega-dropdown-menu">
                     <div class="w3ls_vegetables">
                         <ul class="dropdown-menu drp-mnu">
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="login.html">Sign Up</a></li>
+                            <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                            <li><a href="{{ path('fos_user_security_logout') }}">Log Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </ul>
     </div>
     <div class="w3l_header_right1">
-        <h2><a href="mail.html">Contact Us</a></h2>
+        <h2><a href="#">Contact Us</a></h2>
     </div>
     <div class="clearfix"> </div>
 </div>
@@ -85,22 +85,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="logo_products">
     <div class="container">
         <div class="w3ls_logo_products_left">
-            <h1><a href="index.html"><span>Bon</span> Plan</a></h1>
+            <h1><a href="{{ path('homepage') }}"><span>Bon</span> Plan</a></h1>
         </div>
         <div class="w3ls_logo_products_left1">
             <ul class="special_items">
                 <li><a href="{{ path('list_etab') }}">Etablissements</a><i>/</i></li>
-                <li><a href="about.html">About Us</a><i>/</i></li>
-                <li><a href="products.html">Best Deals</a><i>/</i></li>
-                <li><a href="services.html">Services</a></li>
+                <li><a href="#">About Us</a><i>/</i></li>
+                <li><a href="#">Best Deals</a><i>/</i></li>
+                <li><a href="#">Services</a></li>
             </ul>
         </div>
-        <div class="w3ls_logo_products_left1">
+       {# <div class="w3ls_logo_products_left1">
             <ul class="phone_email">
-                <li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234 567</li>
-                <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">store@grocery.com</a></li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i>(+216) 70 000 000</li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">bonplan@optimists.com</a></li>
             </ul>
-        </div>
+        </div>#}
         <div class="clearfix"> </div>
     </div>
 </div>
@@ -121,33 +121,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                 <ul class="nav navbar-nav nav_1">
-                    <li><a href="products.html">Branded Foods</a></li>
-                    <li><a href="household.html">Households</a></li>
                     <li class="dropdown mega-dropdown active">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Veggies & Fruits<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Etablissement<span class="caret"></span></a>
                         <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
                             <div class="w3ls_vegetables">
                                 <ul>
-                                    <li><a href="vegetables.html">Vegetables</a></li>
-                                    <li><a href="vegetables.html">Fruits</a></li>
+                                    <li><a href="vegetables.html">Café</a></li>
+                                    <li><a href="vegetables.html">Restautrant</a></li>
+                                    <li><a href="vegetables.html">Loisirs</a></li>
+                                    <li><a href="vegetables.html">Shopping</a></li>
                                 </ul>
                             </div>
                         </div>
                     </li>
-                    <li><a href="kitchen.html">Kitchen</a></li>
-                    <li><a href="short-codes.html">Short Codes</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beverages<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalogues<span class="caret"></span></a>
                         <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
                             <div class="w3ls_vegetables">
                                 <ul>
-                                    <li><a href="drinks.html">Soft Drinks</a></li>
-                                    <li><a href="drinks.html">Juices</a></li>
+                                    <li><a href="drinks.html">Catalogue1</a></li>
+                                    <li><a href="drinks.html">Catalogue2</a></li>
+                                    <li><a href="drinks.html">Catalogue3</a></li>
+                                    <li><a href="drinks.html">Catalogue4</a></li>
                                 </ul>
                             </div>
                         </div>
                     </li>
-                    <li><a href="pet.html">Pet Food</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frozen Foods<span class="caret"></span></a>
                         <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
@@ -164,8 +163,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div><!-- /.navbar-collapse -->
         </nav>
     </div>
+    <div class="container">
     {% block body %}
-    <div class="w3l_banner_nav_right">
+   {# <div class="w3l_banner_nav_right">
         <section class="slider">
             <div class="flexslider">
                 <ul class="slides">
@@ -210,8 +210,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         </script>
         <!-- //flexSlider -->
-    </div>
+    </div>#}
     {% endblock %}
+    </div>
     <div class="clearfix"></div>
 </div>
 <!-- footer -->

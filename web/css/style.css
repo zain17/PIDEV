@@ -2725,7 +2725,7 @@ input.checkbox:checked:after {
     margin: 3em auto 0;
 }
 .w3_login_module{
-	min-height: 475px;
+	min-height: 300px;
 }
 .form-module .toggle {
   cursor: pointer;
@@ -2959,7 +2959,7 @@ input.checkbox:checked:after {
 		width: 88%;
 	}
 	.typo, .privacy, .faq, .services, .events, .mail, .agileinfo_single, .w3_login {
-		padding: 5em 3em;
+		padding: 3em 1em;
 	}
 	.events_bottom_left1_grid {
 		width: 110px;
@@ -4375,7 +4375,7 @@ input.checkbox:checked:after {
 		padding: 20px;
 	}
 	.w3_login_module {
-		min-height: 433px;
+		min-height: 300px;
 	}
 	.agileinfo_mail_grid_right input[type="submit"], .agileinfo_mail_grid_right input[type="reset"] {
 		width: 100%;
@@ -4807,10 +4807,10 @@ input.checkbox:checked:after {
 		font-size: 13px;
 	}
 	.w3_login_module {
-		min-height: 375px;
+		min-height: 300px;
 	}
 	.form-module {
-		margin: 2em auto 0;
+		margin: 1em auto 0;
 	}
 	.product_list_header input.button {
 		padding: .3em 2.5em .3em 0.8em;

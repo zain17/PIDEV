@@ -8,11 +8,11 @@ reservation:
 
 map:
     resource: "@MapBundle/Resources/config/routing.yml"
-    prefix:   /map
+    prefix:   /googleapi
 
 profil:
     resource: "@ProfilBundle/Resources/config/routing.yml"
-    prefix:   /profil
+    prefix:   /
 
 app:
     resource: '@AppBundle/Controller/'
@@ -26,6 +26,7 @@ evenement:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
 entite:
     resource: "@EntiteBundle/Resources/config/routing.yml"
     prefix:   /entite
