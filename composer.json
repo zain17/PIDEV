@@ -39,8 +39,6 @@
         "symfony/templating": "^4.0.4",
         "twig/twig": "^1.0||^2.0",
         "vich/uploader-bundle": "^1.8"
-        "symfony/templating": "^4.0.4",
-        "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

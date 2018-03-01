@@ -45,7 +45,6 @@ class EtablissementController extends Controller
             "Restaurants"=>$etablissementsRestaurant,
         ));
     }
-
     public function listAllAction()
     {
         $em= $this->getDoctrine()->getManager();
@@ -54,7 +53,6 @@ class EtablissementController extends Controller
             "etablissements"=>$etablissements
         ));
     }
-
     public function listBestAction()
     {
         $em= $this->getDoctrine()->getManager();
