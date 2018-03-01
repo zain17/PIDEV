@@ -21,7 +21,7 @@ class EtablissementType extends AbstractType
     {
         $builder
             ->add('nom')
-//            ->add('photos',FileType::class,array('data_class'=>null))
+            ->add('photo',FileType::class,array('data_class'=>null))
             ->add('adresse')
             ->add('description')
             ->add('gouvernorat',ChoiceType::class,

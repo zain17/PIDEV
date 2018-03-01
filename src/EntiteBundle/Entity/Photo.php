@@ -27,11 +27,7 @@ class Photo
      */
     private $chemin;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Etablissement", inversedBy="photos")
-     * @ORM\JoinColumn(name="etablissement_id_etab", referencedColumnName="id")
-     */
-    private $etablissement;
+
     /**
      * Get id
      *

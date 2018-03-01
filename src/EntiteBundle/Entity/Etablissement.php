@@ -95,9 +95,11 @@ class Etablissement
     private $estActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Photo", mappedBy="etablissement")
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $photos;
+    private $photo;
     /**
      * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Catalogue", mappedBy="etablissement")
      */
@@ -366,42 +368,11 @@ class Etablissement
      */
     public function __construct()
     {
-        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
-    /**
-     * Add photo
-     *
-     * @param \EntiteBundle\Entity\Photo $photo
-     *
-     * @return Etablissement
-     */
-    public function addPhoto(\EntiteBundle\Entity\Photo $photo)
-    {
-        $this->photos[] = $photo;
 
-        return $this;
-    }
 
-    /**
-     * Remove photo
-     *
-     * @param \EntiteBundle\Entity\Photo $photo
-     */
-    public function removePhoto(\EntiteBundle\Entity\Photo $photo)
-    {
-        $this->photos->removeElement($photo);
-    }
-
-    /**
-     * Get photos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPhotos()
-    {
-        return $this->photos;
-    }
 
     /**
      * @param int $id
@@ -411,13 +382,6 @@ class Etablissement
         $this->id = $id;
     }
 
-    /**
-     * @param mixed $photos
-     */
-    public function setPhotos($photos)
-    {
-        $this->photos = $photos;
-    }
 
     /**
      * @param mixed $catalogues
@@ -561,5 +525,29 @@ class Etablissement
     public function getHorraire()
     {
         return $this->horraire;
+    }
+
+    /**
+     * Set photo.
+     *
+     * @param string|null $photo
+     *
+     * @return Etablissement
+     */
+    public function setPhoto($photo = null)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo.
+     *
+     * @return string|null
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }

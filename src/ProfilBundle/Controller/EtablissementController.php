@@ -13,20 +13,14 @@ class EtablissementController extends Controller
     public function ajouterAction(Request $request)
     {
         $etablissement=new Etablissement();
-//        $photo=new Photo();
         $form=$this->createForm(EtablissementType::class,$etablissement);
         $form->handleRequest($request);
         if($form->isSubmitted() && !$this->getUser()->getEtablissement()&& $this->getUser()->getRoles()[0]=="ROLE_ETABLISSEMENT") {
+            $file=$etablissement->getPhoto();
+            $fileName= md5(uniqid()).'.'.$file->guessExtension();
+            $file->move($this->getParameter('image_directory'),$fileName);
+            $etablissement->setPhoto($fileName);
             $em=$this->getDoctrine()->getManager();
-           /* foreach ($etablissement->getPhotos() as $value){
-                $file=$value;
-//                $fileName= md5(uniqid()).'.'.$file->guessExtension();
-//                $file->move($this->getParameter('image_directory'),$fileName);
-//                $photo->setChemin($fileName);
-                $photo->setEtablissement($etablissement);
-                $em->persist($photo);
-
-            }*/
             $this->getUser()->setEtablissement($etablissement);
             $em->persist($etablissement);
             $em->flush();
@@ -65,7 +59,7 @@ class EtablissementController extends Controller
     {
         $em= $this->getDoctrine()->getManager();
         $etablissements=$em->getRepository("EntiteBundle:Etablissement")->findAll(['note'=> 'DESC'], null, 10, 0);
-        return $this->render('all.html.twig', array(
+        return $this->render('@Profil/Etablissement/all.html.twig', array(
             "etablissements"=>$etablissements
         ));
     }

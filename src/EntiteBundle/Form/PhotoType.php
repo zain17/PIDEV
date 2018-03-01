@@ -14,8 +14,8 @@ class PhotoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('chemin',FileType::class)
-            ->add('etablissement');
+        $builder->add('chemin',FileType::class);
+
     }/**
      * {@inheritdoc}
      */

@@ -15,8 +15,6 @@ class UtilisateurController extends Controller
         $form=$this->createForm(UtilisateurType::class,$utilisateur);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-            /**@var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
-
             $file=$utilisateur->getPhotoProfil();
             $fileName= md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('image_directory'),$fileName);
