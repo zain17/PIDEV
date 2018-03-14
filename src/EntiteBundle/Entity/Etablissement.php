@@ -26,6 +26,12 @@ class Etablissement
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $nom;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * @var string
@@ -56,12 +62,17 @@ class Etablissement
     private $note;
 
     /**
+     * @var datetime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $horraire;
+    /**
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $horraire;
-
+    private $type;
     /**
      * @var float
      *
@@ -82,6 +93,75 @@ class Etablissement
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $estActive;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $photo;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Catalogue", mappedBy="etablissement")
+     */
+    private $catalogues;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="etablissement")
+     */
+    private $experiences;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="etablissement")
+     */
+    private $revues;
+
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExperiences()
+    {
+        return $this->experiences;
+    }
+
+    /**
+     * @param mixed $experiences
+     */
+    public function setExperiences($experiences)
+    {
+        $this->experiences = $experiences;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRevues()
+    {
+        return $this->revues;
+    }
+
+    /**
+     * @param mixed $revues
+     */
+    public function setRevues($revues)
+    {
+        $this->revues = $revues;
+    }
+
 
     /**
      * Get id
@@ -212,31 +292,6 @@ class Etablissement
     {
         return $this->note;
     }
-
-    /**
-     * Set horraire
-     *
-     * @param string $horraire
-     *
-     * @return Etablissement
-     */
-    public function setHorraire($horraire)
-    {
-        $this->horraire = $horraire;
-
-        return $this;
-    }
-
-    /**
-     * Get horraire
-     *
-     * @return string
-     */
-    public function getHorraire()
-    {
-        return $this->horraire;
-    }
-
     /**
      * Set longitude
      *
@@ -307,5 +362,192 @@ class Etablissement
     public function getEstActive()
     {
         return $this->estActive;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+
+    }
+
+
+
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+
+    /**
+     * @param mixed $catalogues
+     */
+    public function setCatalogues($catalogues)
+    {
+        $this->catalogues = $catalogues;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Etablissement
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add catalogue
+     *
+     * @param \EntiteBundle\Entity\Catalogue $catalogue
+     *
+     * @return Etablissement
+     */
+    public function addCatalogue(\EntiteBundle\Entity\Catalogue $catalogue)
+    {
+        $this->catalogues[] = $catalogue;
+
+        return $this;
+    }
+
+    /**
+     * Remove catalogue
+     *
+     * @param \EntiteBundle\Entity\Catalogue $catalogue
+     */
+    public function removeCatalogue(\EntiteBundle\Entity\Catalogue $catalogue)
+    {
+        $this->catalogues->removeElement($catalogue);
+    }
+
+    /**
+     * Get catalogues
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCatalogues()
+    {
+        return $this->catalogues;
+    }
+
+    /**
+     * Add experience
+     *
+     * @param \EntiteBundle\Entity\Experience $experience
+     *
+     * @return Etablissement
+     */
+    public function addExperience(\EntiteBundle\Entity\Experience $experience)
+    {
+        $this->experiences[] = $experience;
+
+        return $this;
+    }
+
+    /**
+     * Remove experience
+     *
+     * @param \EntiteBundle\Entity\Experience $experience
+     */
+    public function removeExperience(\EntiteBundle\Entity\Experience $experience)
+    {
+        $this->experiences->removeElement($experience);
+    }
+
+    /**
+     * Add revue
+     *
+     * @param \EntiteBundle\Entity\Revue $revue
+     *
+     * @return Etablissement
+     */
+    public function addRevue(\EntiteBundle\Entity\Revue $revue)
+    {
+        $this->revues[] = $revue;
+
+        return $this;
+    }
+
+    /**
+     * Remove revue
+     *
+     * @param \EntiteBundle\Entity\Revue $revue
+     */
+    public function removeRevue(\EntiteBundle\Entity\Revue $revue)
+    {
+        $this->revues->removeElement($revue);
+    }
+
+    public function __toString()
+    {
+        return "";
+    }
+
+
+    /**
+     * Set horraire.
+     *
+     * @param \DateTime|null $horraire
+     *
+     * @return Etablissement
+     */
+    public function setHorraire($horraire = null)
+    {
+        $this->horraire = $horraire;
+
+        return $this;
+    }
+
+    /**
+     * Get horraire.
+     *
+     * @return \DateTime|null
+     */
+    public function getHorraire()
+    {
+        return $this->horraire;
+    }
+
+    /**
+     * Set photo.
+     *
+     * @param string|null $photo
+     *
+     * @return Etablissement
+     */
+    public function setPhoto($photo = null)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo.
+     *
+     * @return string|null
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }

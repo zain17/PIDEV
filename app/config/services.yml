@@ -39,3 +39,13 @@ services:
        class: EntiteBundle\Form\RegistrationType
        tags:
             - { name: form.type, alias: app_user_registration }
+
+    redirect.after.login:
+        class: AppBundle\Listener\AfterLoginRedirection
+        arguments: ['@router']
+
+    redirect.registration_completed:
+        class:  AppBundle\Listener\RegistrationConfirmListener
+        arguments: ['@router']
+        tags:
+            - { name: kernel.event_subscriber }

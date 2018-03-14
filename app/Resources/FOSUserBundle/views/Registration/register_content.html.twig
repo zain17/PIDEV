@@ -1,0 +1,24 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<!-- Register -->
+<div class="w3_login">
+    <h3>Sign In & Sign Up</h3>
+    <div class="w3_login_module">
+        <div class="module form-module">
+            <a href="{{ path('fos_user_security_login') }}">
+                <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+                    <div class="tooltip">Sign In</div>
+                </div>
+            </a>
+            <div class="form">
+                <h2>Create an account</h2>
+                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                {{ form_widget(form) }}
+                <div>
+                    <input type="submit" value="{{ 'registration.submit'|trans }}" />
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //register -->

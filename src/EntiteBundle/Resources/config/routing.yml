@@ -1,3 +1,19 @@
 entite_homepage:
     path:     /
     defaults: { _controller: EntiteBundle:Default:index }
+
+ajouter:
+    path:     /produit/ajouter
+    defaults: { _controller: EntiteBundle:Produit:ajouter }
+
+supprimer:
+    path:     /produit/supprimer
+    defaults: { _controller: EntiteBundle:Produit:supprimer }
+
+modifier:
+    path:     /produit/modifier
+    defaults: { _controller: EntiteBundle:Produit:modifier }
+
+list:
+    path:     /produit/list
+    defaults: { _controller: EntiteBundle:Produit:list }

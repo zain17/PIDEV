@@ -1,7 +1,17 @@
-{% extends "@Blog/Default/template.html.twig" %}
+{% extends "::base.html.twig" %}
 
 {% block titre %}Ajouter etablissement {% endblock %}
-{% block content %}
-    {{ form_start(form)}}
-    {{ form_end(form) }}
+{% block body %}
+
+        <div class="w3_login_module">
+            <div class="module form-module">
+                <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+                </div>
+                <div class="form">
+                    <h2>Ajouter etablissement</h2>
+                    {{ form_start(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
 {% endblock %}

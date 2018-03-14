@@ -14,6 +14,33 @@ supprimer:
     path:     /supprimer/{id}
     defaults: { _controller: EvenementBundle:Evenements:Supprimer }
 
-affiche:
-    path:     /affiche
+aff:
+    path:     /affichage
     defaults: { _controller: EvenementBundle:Evenements:affiche }
+
+
+detail:
+    path:     /detail/{id}
+    defaults: { _controller: EvenementBundle:Evenements:detail }
+
+afficheu:
+    path:     /calendar
+    defaults: { _controller: EvenementBundle:Evenements:calendar }
+    options:
+     expose : true
+
+_ajout:
+    path:     /Ajout
+    defaults: { _controller: EvenementBundle:CommentaireE:Ajout }
+
+_supprimer:
+    path:     /Supprimer/{id}/{ide}
+    defaults: { _controller: EvenementBundle:CommentaireE:Supprimer }
+
+_modifier:
+    path:     /Modifier/{id}/{ide}
+    defaults: { _controller: EvenementBundle:CommentaireE:Modifier }
+
+_afficher:
+    path:     /Afficher
+    defaults: { _controller: EvenementBundle:CommentaireE:Afficher }
