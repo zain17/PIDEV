@@ -6,6 +6,7 @@ use Beelab\TagBundle\Tag\TaggableInterface;
 use Beelab\TagBundle\Tag\TagInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 /**
  * Article
@@ -24,6 +25,28 @@ class Article implements  TaggableInterface
      */
     protected $tags;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\CommentaireB", mappedBy="article")
+     */
+    protected $commentaires;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
+    /**
+     * @param ArrayCollection $commentaires
+     */
+    public function setCommentaires($commentaires)
+    {
+        $this->commentaires = $commentaires;
+    }
+
     // note: if you generated code with SensioGeneratorBundle, you need
     // to replace "Tag" with "TagInterface" where appropriate
 
@@ -33,6 +56,9 @@ class Article implements  TaggableInterface
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->created = new \DateTime('now');
+        $this->updated = new \DateTime('now');
+        $this->commentaires = new ArrayCollection();
     }
 
     /**
@@ -81,7 +107,7 @@ class Article implements  TaggableInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
@@ -108,6 +134,12 @@ class Article implements  TaggableInterface
      * @ORM\Column(name="auteur", type="integer")
      */
     private $auteur;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="auteurn", type="string")
+     */
+    private $auteurN;
 
 
     /**
@@ -216,9 +248,85 @@ class Article implements  TaggableInterface
     protected $tagsTxt;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @return mixed
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param mixed $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuteurN()
+    {
+        return $this->auteurN;
+    }
+
+    /**
+     * @param string $auteurN
+     */
+    public function setAuteurN($auteurN)
+    {
+        $this->auteurN = $auteurN;
+    }
+
+    /**
+     * @ORM\Column(type="datetime", nullable=false)
      */
     protected $updated;
+
+    /**
+     *
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    protected $created;
+
+    /**
+     * @return mixed
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param mixed $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+
+    /**
+     * Gets triggered only on insert
+
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created = new \DateTime("now");
+        $this->updated = $this->created;
+    }
+
+    /**
+     * Gets triggered every time on update
+
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updated = new \DateTime("now");
+    }
 
 
     /**

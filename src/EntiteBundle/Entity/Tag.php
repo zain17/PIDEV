@@ -9,6 +9,7 @@
 namespace EntiteBundle\Entity;
 
 use Beelab\TagBundle\Tag\TagInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +27,14 @@ class Tag implements  TagInterface
      */
     protected $id;
 
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $articles;
     /**
      * @var string
      *

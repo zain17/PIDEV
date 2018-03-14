@@ -22,6 +22,10 @@ class AppKernel extends Kernel
             new EvenementBundle\EvenementBundle(),
             new \FOS\UserBundle\FOSUserBundle(),
             new ProfilBundle\ProfilBundle(),
+            new Beelab\TagBundle\BeelabTagBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Debril\RssAtomBundle\DebrilRssAtomBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

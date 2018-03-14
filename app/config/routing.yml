@@ -17,3 +17,6 @@ fos_user:
 entite:
     resource: "@EntiteBundle/Resources/config/routing.yml"
     prefix:   /entite
+rssatom:
+    resource: "@DebrilRssAtomBundle/Resources/config/routing.yml"
+    prefix: /blog
