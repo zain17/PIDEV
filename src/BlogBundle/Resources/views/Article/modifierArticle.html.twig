@@ -1,0 +1,53 @@
+{% extends '@Blog/Default/template.html.twig' %}
+{% block css %}
+    <link  rel="stylesheet" href="{{ asset('bundles/blog/tinymce/js/tinymce/skins/lightgray/skin.min.css') }}">
+{% endblock %}
+{% block content %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <section class="wrapper">
+            <div class="inner">
+                <form method="post">
+                    <input type="hidden" name="id"  value="{{ article.id }}">
+                    <label>
+                        Titre:
+                        <input type="text" name="titre" value="{{ article.titre }}">
+                    </label>
+                    <textarea class="tinymce" name="texte" >
+                        {{ article.texte }}
+                    </textarea>
+                    <input type="submit" value="Publier">
+                </form>
+            </div></section>
+    {% else %}
+        <p>You should be admin to access this</p>
+    {% endif %}
+
+
+    <footer id="footer">
+        <div class="inner">
+            <div class="content">
+                <section>
+                    text1
+                </section>
+                <section>
+                    text2
+                </section>
+                <section>
+                    text3
+                </section>
+            </div>
+            <div class="copyright">
+                GPL 3
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="{{ asset('bundles/blog/tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/blog/tinymce/js/tinymce/jquery.tinymce.min.js') }}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea.tinymce',
+            language: 'fr_FR',
+        })
+    </script>
+{% endblock %}

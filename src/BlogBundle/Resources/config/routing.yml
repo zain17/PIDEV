@@ -1,9 +1,30 @@
-blog_homepage:
-    path:     /
-    defaults: { _controller: BlogBundle:Default:index }
 blog_ajouterArticle:
     path: /ajouterArticle
     defaults: { _controller: BlogBundle:Blog:ajouterArticle }
 blog_lireArticle:
     path: /lireArticle/{id}
     defaults: { _controller: BlogBundle:Blog:lireArticle }
+blog_modifierArticle:
+    path: /modifierArticle/{id}
+    defaults: { _controller: BlogBundle:Blog:modifierArticle }
+blog_supprimerArticle:
+    path: /supprimerArticle/{id}
+    defaults: { _controller: BlogBundle:Blog:supprimerArticle }
+blog_listeArticles:
+    path: /listeArticles
+    defaults: { _controller: BlogBundle:Blog:listeArticle }
+blog_index:
+    path: /
+    defaults: { _controller: BlogBundle:Blog:listeArticle }
+blog_ajouterCommentaire:
+    path: /ajouterC/{id}
+    defaults: { _controller: BlogBundle:Blog:ajouterArticle }
+blog_supprimerCommentaire:
+    path: /supprimerC/{id}
+    defaults: { _controller: BlogBundle:Blog:supprimerCommentaire }
+blog_modifierCommentaire:
+    path: /modifierC/{id}
+    defaults: { _controller: BlogBundle:Blog:modifierC }
+blog_stat:
+    path: /stats
+    defaults: { _controller: BlogBundle:Blog:listeArticle }

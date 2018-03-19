@@ -41,8 +41,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <a href="{{ path('best_etab') }}">Recommendations d'aujourd'hui!</a>
     </div>
     <div class="w3l_search">
-        <form>
-            <input type="text" name="Product" id="SearchBox" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
+        <form action="#" method="post">
+            <input type="text" name="Product" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
             <input type="submit" value=" ">
         </form>
     </div>
@@ -91,8 +91,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="special_items">
                 <li><a href="{{ path('list_etab') }}">Etablissements</a><i>/</i></li>
                 <li><a href="#">About Us</a><i>/</i></li>
-                <li><a href="{{ path('evenement_homepage') }}">Evenement</a><i>/</i></li>
-                <li><a href="{{ path('blog_homepage') }}">Blog</a></li>
+                <li><a href="#">Best Deals</a><i>/</i></li>
+                <li><a href="#">Services</a></li>
             </ul>
         </div>
        {# <div class="w3ls_logo_products_left1">
@@ -121,7 +121,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                 <ul class="nav navbar-nav nav_1">
-                    <li><a href="{{ path('list_etab') }}">Etablissement</a></li>
                     <li class="dropdown mega-dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Etablissement<span class="caret"></span></a>
                         <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
@@ -148,12 +147,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </div>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Frozen Foods<span class="caret"></span></a>
+                        <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+                            <div class="w3ls_vegetables">
+                                <ul>
+                                    <li><a href="frozen.html">Frozen Snacks</a></li>
+                                    <li><a href="frozen.html">Frozen Nonveg</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="bread.html">Bread & Bakery</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
     </div>
-    <div class="container" id="searchResult">
-
+    <div class="container">
     {% block body %}
    {# <div class="w3l_banner_nav_right">
         <section class="slider">
@@ -305,39 +315,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         if (total < 3) {
             alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
             evt.preventDefault();
-        }
-    });
-
-</script>
-<!-- jQuery is necessary -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-    var searchRequest = null;
-    $('#SearchBox').keyup(function () {
-        var minlength = 1;
-        var that = this;
-        var input = $(this).val();
-        $('#searchResult').append("")
-        if (input.length >= minlength ) {
-            if (searchRequest != null)
-                searchRequest.abort();
-            searchRequest = $.ajax({
-                url: "{{ path('search_etab') }}",
-                type: 'POST',
-                data: {'q': input},
-                error: function (e) {
-                    console.log(e.message);
-                },
-                success: function (data) {
-
-                    //console.log(data);
-                    $.each(data, function (i, e) {
-                        /*console.log(e);  */
-                        $('#searchResult').html("<h2 class='list-group-item-danger'>" + e.nom + "</h2>");
-                    })
-                }
-            })
-
         }
     });
 

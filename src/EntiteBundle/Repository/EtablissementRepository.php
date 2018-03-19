@@ -2,7 +2,6 @@
 
 namespace EntiteBundle\Repository;
 
-
 /**
  * EtablissementRepository
  *
@@ -11,10 +10,4 @@ namespace EntiteBundle\Repository;
  */
 class EtablissementRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function searchByName($nom){
-        $q=$this->getEntityManager()
-            ->createQuery("select et from EntiteBundle:Etablissement et WHERE et.nom LIKE :nom ")
-            ->setParameter(":nom",'%'.$nom.'%');
-        return $q->getResult();
-    }
 }

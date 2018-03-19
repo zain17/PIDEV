@@ -3,12 +3,10 @@
 namespace ProfilBundle\Controller;
 
 use EntiteBundle\Entity\Etablissement;
+use EntiteBundle\Entity\Photo;
 use EntiteBundle\Form\EtablissementType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 class EtablissementController extends Controller
 {
@@ -47,6 +45,7 @@ class EtablissementController extends Controller
             "Restaurants"=>$etablissementsRestaurant,
         ));
     }
+
     public function listAllAction()
     {
         $em= $this->getDoctrine()->getManager();
@@ -55,25 +54,7 @@ class EtablissementController extends Controller
             "etablissements"=>$etablissements
         ));
     }
-    //fonction recherche avc ajax
-    public function rechercheAjaxAction(Request $request)
-    {
-        if($request->isXmlHttpRequest())
-        {
-            $marque=$request->get('q');
-            $em= $this->getDoctrine()->getManager();
-            $etablissements=$em->getRepository("EntiteBundle:Etablissement")->searchByName($marque);
-            //etape 1: initialiser le serializer
-            $serializer=new Serializer(array(new ObjectNormalizer()));
-            //etape 2 : transformation liste des objets
-            $data=$serializer->normalize($etablissements);
-            //etape 3 : encodage format JSON
-            return new JsonResponse($data);
-        }
-        return $this->render('ProfilBundle:Etablissement:all.html.twig', array(
 
-        ));
-    }
     public function listBestAction()
     {
         $em= $this->getDoctrine()->getManager();
@@ -105,12 +86,14 @@ class EtablissementController extends Controller
             "form"=>$form->createView()
         ));
     }
-
-    public function getDetailAction($idDetail){
+    public function coordonnesMap(){
+        $etablissements=$this->listAllAction();
         $em= $this->getDoctrine()->getManager();
-        $etablissement=$em->getRepository("EntiteBundle:Etablissement")->find($idDetail);
-        return $this->render('@Profil/Etablissement/details.html.twig', array(
-            "etablissement"=>$etablissement
+        foreach($etablissements as $value){
+            $coordonnes=['langitudes'=>$value->getLongitude(),'latitudes'=>$value->getLatitude()];
+        }
+        return $this->render('@Map/Default/index.html.twig', array(
+            "coordonnes"=>$coordonnes
         ));
     }
     public function RechercheParGouvernoratAction(){

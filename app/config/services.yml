@@ -27,6 +27,9 @@ services:
         resource: '../../src/AppBundle/Controller'
         public: true
         tags: ['controller.service_arguments']
+    debril.rss_atom.provider:
+            class: BlogBundle\Feed\RssProvider
+            arguments: ["@doctrine.orm.entity_manager", "@logger"]
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:

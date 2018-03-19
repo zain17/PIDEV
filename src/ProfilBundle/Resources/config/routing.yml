@@ -1,18 +1,9 @@
 ajouter_etab:
     path:     /profile/etablissement/ajouter
     defaults: { _controller: ProfilBundle:Etablissement:ajouter }
-
-search_etab:
-    path:     /profile/etablissement/search
-    defaults: { _controller: ProfilBundle:Etablissement:rechercheAjax }
 list_etab:
     path:     /etablissement/list
     defaults: { _controller: ProfilBundle:Etablissement:listAll }
-
-detail_etab:
-    path:     /etablissement/{idDetail}
-    defaults: { _controller: ProfilBundle:Etablissement:getDetail }
-
 best_etab:
     path:     /
     defaults: { _controller: ProfilBundle:Etablissement:list }
