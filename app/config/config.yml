@@ -13,7 +13,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: fr
+    locale: en
     image_directory: '%kernel.project_dir%/web/bundles/blog/template/images'
 
 framework:
@@ -87,14 +87,5 @@ fos_user:
         confirmation:
             enabled: false
         form:
-            type: EntiteBundle\Form\RegistrationType
-beelab_tag:
-    tag_class: EntiteBundle\Entity\Tag
-    purge:     false
+               type: EntiteBundle\Form\RegistrationType
 
-knp_paginator:
-    page_range: 5
-
-cmen_google_charts:
-    version: "current"
-    language: "fr"

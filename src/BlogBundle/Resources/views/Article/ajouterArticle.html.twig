@@ -3,7 +3,6 @@
     <link  rel="stylesheet" href="{{ asset('bundles/blog/tinymce/js/tinymce/skins/lightgray/skin.min.css') }}">
 {% endblock %}
 {% block content %}
-    {% if is_granted('ROLE_ADMIN') %}
     <section class="wrapper">
     <div class="inner">
         <form method="post">
@@ -11,19 +10,12 @@
                 Titre:
                 <input type="text" name="titre">
             </label>
-            <label>
-                Tags:
-                <input type="text" required="false" name="tagsTxt">
-            </label>
             <textarea class="tinymce" name="texte">
+                {{ value }}
             </textarea>
             <input type="submit" value="Publier">
         </form>
     </div></section>
-        {% else %}
-            <p>You should be admin to access this</p>
-            {% endif %}
-
 
     <footer id="footer">
         <div class="inner">

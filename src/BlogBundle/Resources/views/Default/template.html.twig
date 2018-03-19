@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>{% block titre %}Blog{% endblock %}</title>
+		<title>{% block titre %}Titre template{% endblock %}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
@@ -18,7 +18,7 @@
 
 		<!-- Header -->
 			<header id="header">
-				<a class="logo" href="{{ path('blog_index') }}">BonPlan</a>
+				<a class="logo" href="index.html">BonPlan</a>
 				<nav>
 					<a href="#menu">Menu</a>
 				</nav>
@@ -27,19 +27,11 @@
 		<!-- Nav -->
 			<nav id="menu">
 				<ul class="links">
-                    {% block elementsMenu %}
-                        {% if app.user %}
-							<li><a href="{{ path('profil_homepage', {'id':  app.user.id }) }}">{{ app.user.username }}</a></li>
-							<li><a href="{{ path('fos_user_security_logout') }}">Déconnecter</a></li>
-                        {% else %}
-							<li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
-							<li><a href="{{ path('fos_user_registration_register') }}">Créer compte</a></li>
-                        {% endif %}
-                        {% if is_granted('ROLE_ADMIN') %}
-                        <li><a href="{{ path('blog_ajouterArticle') }}">Nouveau article</a></li>
-                        {% endif %}
-						<li><a href="{{ path('blog_listeArticles') }}">Tout les articles</a></li>
-                    {% endblock %}
+					{% block elementsMenu %}
+					<li><a href="index.html">Home</a></li>
+					<li><a href="elements.html">Elements</a></li>
+					<li><a href="generic.html">Generic</a></li>
+					{% endblock %}
 				</ul>
 			</nav>
 

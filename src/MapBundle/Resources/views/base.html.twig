@@ -8,12 +8,12 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAntC9knoMyBHglVdd0Iwt5xdmg73jr1LA" type="text/javascript"></script>
 <script>
-    var myCenter =new google.maps.LatLng(36.903600, 10.185676);
+    var myCenter =new google.maps.LatLng({{ coordonnes['latitudes'] }}, {{ coordonnes['longitudes'] }});
     var marker;
     function initialize() {
         var mapProp= {
             center: myCenter,
-            zoom: 5,
+            zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById('map-canvas'),
