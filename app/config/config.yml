@@ -87,5 +87,14 @@ fos_user:
         confirmation:
             enabled: false
         form:
-               type: EntiteBundle\Form\RegistrationType
+            type: EntiteBundle\Form\RegistrationType
+beelab_tag:
+    tag_class: EntiteBundle\Entity\Tag
+    purge:     false
 
+knp_paginator:
+    page_range: 5
+
+cmen_google_charts:
+    version: "current"
+    language: "fr"

@@ -3,25 +3,117 @@
     <link  rel="stylesheet" href="{{ asset('bundles/blog/tinymce/js/tinymce/skins/lightgray/skin.min.css') }}">
 {% endblock %}
 {% block content %}
-    <section class="wrapper">
-        <div class="inner">
-            <h1>
-            {{ article.titre }}
-            </h1>
-            <div>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-8" id="articlesP">
+        </div>
+        <!-- Post Content Column -->
+        <div class="col-lg-8" id="blogArt">
+
+            <!-- Title -->
+            <h1 class="mt-4">{{ article.titre }} </h1>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('blog_modifierArticle', {'id': article.id}) }}">Modifier</a>&nbsp;&nbsp; <a href="{{ path('blog_supprimerArticle', {'id': article.id}) }}">Supprimer</a>
+                <br>
+            {% endif %}
+            <input type="button"  onclick="exportToPDF()" value="Exporter PDF" class="btn btn-light">
+
+            <!-- Author -->
+            <p class="lead">
+                par
+                <a href="#">{{ article.auteurN }}</a>
+            </p>
+
+            <hr>
+
+            <!-- Date/Time -->
+            <p>Crée le {{ article.updated|date }}</p>
+
+            <hr>
+
+
+            <!-- Post Content -->
+            <hr>
             {{ article.texte | raw }}
+
+            <!-- Comments Form -->
+            {% if app.user %}
+            <div class="card my-4">
+                <h5 class="card-header">Laisser un commentaire:</h5>
+                <div class="card-body">
+                    <form action="{{ path('blog_lireArticle', {"id":article.id}) }}" method="post">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" name="ctext"></textarea>
+                        </div>
+                        <input type="hidden" name="articleid" value="{{ article.id }}">
+                        <button type="submit" class="btn btn-primary">Commenter</button>
+                    </form>
+                </div>
             </div>
-            {#
-            <form method="post">
-            <textarea class="tinymce" name="texte">
-                {{ article.texte }}
-            </textarea>
-                <input type="submit" value="Publier">
-            </form>
-            #}
-        </div></section>
-    <script type="text/javascript" src="{{ asset('bundles/blog/tinymce/js/tinymce/tinymce.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bundles/blog/tinymce/js/tinymce/jquery.tinymce.min.js') }}"></script>
+                <hr>
+                <h1>Vos commentaires:</h1>
+            {% endif %}
+
+            <!-- Single Comment -->
+            {% for commentaire in commentaires %}
+            <div class="media mb-4">
+                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                <div class="media-body">
+                    <h5 class="mt-0">{{ commentaire.auteurN }}</h5>
+                    {% if app.user %}
+                    {% if app.user.id == commentaire.auteur %}
+                        <div>
+                    <small><a href="{{ path('blog_modifierCommentaire', {"id": commentaire.id}) }}">Modifier</a>&nbsp&nbsp;<a href="{{ path('blog_supprimerCommentaire', {"id": commentaire.id}) }}">Supprimer</a> </small>
+                        </div>
+                    {% endif %}
+                    {% endif %}
+                    {{ commentaire.text }}
+                </div>
+            </div>
+            {% endfor %}
+
+
+        <!-- Sidebar Widgets Column -->
+        </div>
+        <div class="col-md-4">
+
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Recherche</h5>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Rechercher..." name="rechtt" id="rechT">
+                    </div>
+                    <div class="=input-group">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Widget -->
+            <div id="tags">
+            <div class="card my-4">
+                <h5 class="card-header">Tags</h5>
+                <div class="card-body">
+                    <div class="row">
+                            {% if article.tags.count > 0 %}
+                                {% for tag in article.tags %}
+                                    <a href="#" class="tag" name="{{ tag.id }}">{{ tag.name }}</a> &nbsp;
+                                {% endfor %}
+                                {% else %}
+                                    Rien
+                                {% endif %}
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+    <!-- /.row -->
+
     {#
     <script>
         tinymce.init({
@@ -29,4 +121,71 @@
         })
     </script>
     #}
+    <script src="{{ asset('bundles/app/jsPDF/jspdf.js') }}"> </script>
+    <script src="{{ asset('bundles/app/jsPDF/plugins/from_html.js') }}"> </script>
+    <script src="{{ asset('bundles/app/jsPDF/plugins/split_text_to_size.js') }}"> </script>
+    <script src="{{ asset('bundles/app/jsPDF/plugins/standard_fonts_metrics.js') }}"> </script>
+    <script>
+        function exportToPDF() {
+            var doc = new jsPDF();
+            doc.fromHTML($('#blogArt').get(0), 20, 20, {"width": 500});
+            setTimeout(function () {
+                doc.output('datauri');
+            }, 2000);
+        }
+            /*
+            setTimeout(
+                doc.output('datauri')
+                , 2000);
+        }*/
+    </script>
+    <script src="{{ asset('bundles/blog/blogTemplate/vendor/jquery/jquery.js') }}"></script>
+    <script>
+
+        $("#rechT").keyup(function(){
+            that = $(this);
+            $.ajax({
+                url:'{{ (path('blog_listeArticles')) }}',
+                type: "POST",
+                data: {
+                    "text": $("#rechT").val()
+                },
+                async: true,
+                success: function (data)
+                {
+                    console.log(data)
+                    $('#articlesP').html(data);
+                    $('#blogArt').remove();
+
+                }
+            });
+            return false;
+
+        });
+
+        $(".tag").click(function() {
+       //     alert($(this).text())
+        })
+        $(".tag").click(function(){
+            that = $(this);
+            $.ajax({
+                url:'{{ (path('blog_listeArticles')) }}',
+                type: "POST",
+                data: {
+                    "tag": that.text()
+                },
+                async: true,
+                success: function (data)
+                {
+                    console.log(data)
+                    $('#articlesP').html(data);
+                    $('#blogArt').remove();
+                    $('#tags').remove();
+
+                }
+            });
+            return false;
+
+        });
+    </script>
 {% endblock %}

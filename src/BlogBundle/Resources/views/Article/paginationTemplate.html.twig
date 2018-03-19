@@ -1,0 +1,31 @@
+<div class="count">
+    Total des articles: {{ pagination.getTotalItemCount }}
+</div>
+{#
+Trier par:
+<span{% if pagination.isSorted('a.titre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Titre', 'a.titre') }}</span>
+<span> {{ knp_pagination_sortable(pagination, 'CréeLe', 'a.created') }}</span>
+#}
+
+{% for article in pagination %}
+    <span {% if loop.index is odd %}class="color"{% endif %}>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ article.titre }}</h2>
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <small><a href="{{ path('blog_supprimerArticle', {"id": article.id}) }}" data-toggle="tooltip" title="Supprimer">Supprimer</a></small>
+                            <small><a href="{{ path('blog_modifierArticle', {"id": article.id })}}" data-toggle="tooltip" title="Modifier">Modifier</a></small>
+                            {% endif %}
+                            <p class="card-text">{{ article.texte|striptags|slice(1, 30) }}</p>
+                            <a href="{{ path('blog_lireArticle', {'id': article.id}) }}" class="btn btn-primary">Lire plus</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Crée le {{ article.created| date('Y-m-d') }} par
+                            <a href="#"> {{ article.auteurN }}</a>
+                        </div>
+                    </div>
+                </span>
+{% endfor %}
+<div class="navigation">
+    {{ knp_pagination_render(pagination) }}
+</div>
