@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>{% block titre %}Titre template{% endblock %}</title>
+		<title>{% block titre %}Blog{% endblock %}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
@@ -18,7 +18,7 @@
 
 		<!-- Header -->
 			<header id="header">
-				<a class="logo" href="index.html">BonPlan</a>
+				<a class="logo" href="{{ path('blog_index') }}">BonPlan</a>
 				<nav>
 					<a href="#menu">Menu</a>
 				</nav>
