@@ -1,0 +1,15 @@
+{% extends '@Blog/Default/templateBlog.html.twig' %}
+{% block content %}
+<div class="card my-4">
+    <h5 class="card-header">Modifier votre commentaire:</h5>
+    <div class="card-body">
+        <form action="{{ path('blog_modifierCommentaire', {"id":commentaire.id}) }}" method="post">
+            <div class="form-group">
+                <textarea class="form-control" rows="3" name="ctext">{{ commentaire.text }}</textarea>
+            </div>
+            <input type="hidden" name="articleid" value="{{ commentaire.article.id }}">
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
