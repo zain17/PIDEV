@@ -24,14 +24,13 @@
                         </div>
                             </h3>
                     {% endif %}
-                            {% if user.etablissement %}
-                                <h4>Type de compte :{% if user.roles[0] == 'ROLE_ETABLISSEMENT' %} ETABLISSEMENT {% endif %}</h4>
-                                <h3>Etablissement: {{ user.etablissement.nom }}</h3>
+                        {% if user.etablissement %}
+                            <h4>Type de compte :{% if user.roles[0] == 'ROLE_ETABLISSEMENT' %} ETABLISSEMENT {% endif %}</h4>
+                            <h3>Etablissement: {{ user.etablissement.nom }}</h3>
                             {% if (user.roles[0] == 'ROLE_ETABLISSEMENT') and user.etablissement %}
-                                <h3>Horraire: {{ user.etablissement.horraire |date('H:i:s') }}</h3>
-                            {% endif %}
+                            <h3>Horraire: {{ user.etablissement.horraire |date('H:i:s') }}</h3>
+                        {% endif %}
                         {% endif %}</span>
-                    </div>
                 </div>
                 <div class="col-md-8">
                     {{ render(controller(
