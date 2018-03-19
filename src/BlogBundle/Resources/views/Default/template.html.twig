@@ -29,7 +29,7 @@
 				<ul class="links">
                     {% block elementsMenu %}
                         {% if app.user %}
-							<li><a href="{{ path('profil_homepage', {'id':  app.user.id }) }}">{{ app.user.username }}</a></li>
+							<li><a href="{{ path('list_utilisateur', {'id':  app.user.id }) }}">{{ app.user.username }}</a></li>
 							<li><a href="{{ path('fos_user_security_logout') }}">Déconnecter</a></li>
                         {% else %}
 							<li><a href="{{ path('fos_user_security_login') }}">Se connecter</a></li>
