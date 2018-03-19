@@ -1,3 +1,3 @@
 map_homepage:
-    path:     /map
-    defaults: { _controller: MapBundle:Default:index }
+    path:     /map/{idDetail}
+    defaults: { _controller: MapBundle:Default:coordonnesMap }

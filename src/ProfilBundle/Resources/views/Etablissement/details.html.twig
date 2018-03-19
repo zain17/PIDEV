@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block titre %}Détails{% endblock %}
+{% block body %}
+
+<div class="container w3l_banner_nav_right w3ls_w3l_banner_nav_right_grid" >
+    <h3>Détails</h3>
+    <table class="table table-responsive table-striped">
+        <tr >
+            <th>gouvernorat</th>
+            <th>ville</th>
+            <th>adresse</th>
+            <th>Note</th>
+        </tr>
+        <tr>
+            <td>{{ etablissement.gouvernorat }}</td>
+            <td>{{ etablissement.ville }}</td>
+            <td>{{ etablissement.adresse }}</td>
+            <td>{{ etablissement.note }}</td>
+        </tr>
+    </table>
+</div>
+    <div class="col-md-8 pull-right">
+        {{ render(controller(
+            '\MapBundle\\Controller\\DefaultController::coordonnesMapAction',
+            { 'idDetail': etablissement.id }
+        )) }}
+
+{% endblock %}
