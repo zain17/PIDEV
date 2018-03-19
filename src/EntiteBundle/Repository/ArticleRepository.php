@@ -10,4 +10,36 @@ namespace EntiteBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByTag($tag) {
+        $qb = $this->createQueryBuilder('article')
+            ->where(':tag MEMBER OF article.tags')
+            ->setParameters(array('tag'=> $tag));
+       // echo(sizeof($qb->getQuery()->getResult()));
+        return $qb->getQuery();
+
+    }
+
+    public function findByTags($tags) {
+        $result = [];
+        foreach ($tags as $tag) {
+            $t = $this->findByTag($tag)->getResult();
+            if (sizeof($t) == 0) return [];
+            foreach ($t as $article)
+                if (! $this->exist($article->getId(), $result))
+                    array_push($result, $article);
+        }
+
+        return $result;
+
+
+    }
+
+
+    private function exist($id,  $arr) {
+        foreach ($arr as $article) {
+            if ($article->getId() == $id)
+                return true;
+        }
+
+    }
 }
