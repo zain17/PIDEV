@@ -16,7 +16,7 @@ Trier par:
                             <small><a href="{{ path('blog_supprimerArticle', {"id": article.id}) }}" data-toggle="tooltip" title="Supprimer">Supprimer</a></small>
                             <small><a href="{{ path('blog_modifierArticle', {"id": article.id })}}" data-toggle="tooltip" title="Modifier">Modifier</a></small>
                             {% endif %}
-                            <p class="card-text">{{ article.texte|striptags|slice(1, 30) }}</p>
+                            <p class="card-text">{{ article.texte|striptags|slice(2, 30) }}</p>
                             <a href="{{ path('blog_lireArticle', {'id': article.id}) }}" class="btn btn-primary">Lire plus</a>
                         </div>
                         <div class="card-footer text-muted">
