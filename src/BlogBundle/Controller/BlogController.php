@@ -35,6 +35,10 @@ class BlogController extends Controller
                 for ($i = 0; $i < sizeof($arrs); $i++) {
                     $tt = new Tag();
                     $tt->setName($arrs[$i]);
+                    $temp = $this->getDoctrine()->getRepository(Tag::class)->findBy(["name"=>$tt->getName()]);
+                    if ($temp)
+                        $tt = $temp[0];
+                    else
                     $this->getDoctrine()->getManager()->persist($tt);
                     $article->addTag($tt);
                 }
