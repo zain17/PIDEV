@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CommentaireE
  *
- * @ORM\Table(name="commentaire_e", indexes={@ORM\Index(name="IDX_4A3BA99DA913136", columns={"eve_id"})})
+ * @ORM\Table(name="commentaireE")
  * @ORM\Entity
  */
 class CommentaireE
@@ -36,14 +36,92 @@ class CommentaireE
     private $contenu;
 
     /**
-     * @var \Evenements
-     *
-     * @ORM\ManyToOne(targetEntity="Evenements")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="eve_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Evenements", inversedBy="evenements")
+     * @ORM\JoinColumn(name="commentaire", referencedColumnName="id", nullable=true)
      */
     private $eve;
 
 
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set date.
+     *
+     * @param \DateTime $date
+     *
+     * @return CommentaireE
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date.
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set contenu.
+     *
+     * @param string $contenu
+     *
+     * @return CommentaireE
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
+
+        return $this;
+    }
+
+    /**
+     * Get contenu.
+     *
+     * @return string
+     */
+    public function getContenu()
+    {
+        return $this->contenu;
+    }
+
+    /**
+     * Set eve.
+     *
+     * @param \EntiteBundle\Entity\Evenements|null $eve
+     *
+     * @return CommentaireE
+     */
+    public function setEve(\EntiteBundle\Entity\Evenements $eve = null)
+    {
+        $this->eve = $eve;
+
+        return $this;
+    }
+
+    /**
+     * Get eve.
+     *
+     * @return \EntiteBundle\Entity\Evenements|null
+     */
+    public function getEve()
+    {
+        return $this->eve;
+    }
 }

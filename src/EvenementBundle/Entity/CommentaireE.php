@@ -39,7 +39,7 @@ class CommentaireE
 
     /**
      * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Evenements", inversedBy="CommentaireE")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="eve_id" ,nullable=false)
      */
     private $eve ;
 

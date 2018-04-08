@@ -556,4 +556,28 @@ class Etablissement
     {
         return $this->photo;
     }
+
+    /**
+     * Set horraireF.
+     *
+     * @param \DateTime|null $horraireF
+     *
+     * @return Etablissement
+     */
+    public function setHorraireF($horraireF = null)
+    {
+        $this->horraireF = $horraireF;
+
+        return $this;
+    }
+
+    /**
+     * Get horraireF.
+     *
+     * @return \DateTime|null
+     */
+    public function getHorraireF()
+    {
+        return $this->horraireF;
+    }
 }

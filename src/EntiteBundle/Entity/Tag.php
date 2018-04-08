@@ -2,6 +2,7 @@
 
 namespace EntiteBundle\Entity;
 
+use Beelab\TagBundle\Tag\TagInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="tag", uniqueConstraints={@ORM\UniqueConstraint(name="uniqueTag", columns={"name"})})
  * @ORM\Entity
  */
-class Tag
+class Tag implements TagInterface
 {
     /**
      * @var int
@@ -51,4 +52,13 @@ class Tag
         $this->tagSource = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    public function setName($name)
+    {
+        // TODO: Implement setName() method.
+    }
+
+    public function getName()
+    {
+        // TODO: Implement getName() method.
+    }
 }
