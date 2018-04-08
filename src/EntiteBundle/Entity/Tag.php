@@ -1,76 +1,54 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aminos
- * Date: 2/22/18
- * Time: 10:24 PM
- */
 
 namespace EntiteBundle\Entity;
 
-use Beelab\TagBundle\Tag\TagInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="tag")
- * @ORM\Entity(repositoryClass="EntiteBundle\Repository\TagRepository")
+ * Tag
+ *
+ * @ORM\Table(name="tag", uniqueConstraints={@ORM\UniqueConstraint(name="uniqueTag", columns={"name"})})
+ * @ORM\Entity
  */
-class Tag implements  TagInterface
+class Tag
 {
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $id;
+    private $id;
 
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Tag")
-     * @ORM\JoinColumn(onDelete="CASCADE")
-     */
-    protected $articles;
     /**
      * @var string
      *
-     * @ORM\Column()
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
-    protected $name;
+    private $name;
 
     /**
-     * @return string
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="tag")
      */
-    public function __toString()
-    {
-        return $this->name;
-    }
+    private $article;
 
     /**
-     * @return int
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="tagTarget")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $tagSource;
 
     /**
-     * @param string $name
+     * Constructor
      */
-    public function setName($name)
+    public function __construct()
     {
-        $this->name = $name;
+        $this->article = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tagSource = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 }

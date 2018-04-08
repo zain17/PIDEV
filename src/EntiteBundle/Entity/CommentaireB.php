@@ -2,141 +2,55 @@
 
 namespace EntiteBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * CommentaireB
  *
- * @ORM\Table(name="commentaire_b")
- * @ORM\Entity(repositoryClass="EntiteBundle\Repository\CommentaireBRepository")
+ * @ORM\Table(name="commentaire_b", indexes={@ORM\Index(name="IDX_D45F3C3E7294869C", columns={"article_id"})})
+ * @ORM\Entity
  */
 class CommentaireB
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="text", type="text", nullable=false)
      */
     private $text;
 
     /**
-     * @return int
-     */
-    public function getAuteur()
-    {
-        return $this->auteur;
-    }
-
-    /**
-     * @param int $auteur
-     */
-    public function setAuteur($auteur)
-    {
-        $this->auteur = $auteur;
-    }
-
-
-    /**
-     * @var Article
-     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Article", inversedBy="commentaires")
-     * @ORM\JoinColumn(onDelete="CASCADE")
-     */
-    private $article;
-
-    /**
-     * @return string
-     */
-    public function getAuteurN()
-    {
-        return $this->auteurN;
-    }
-
-    /**
-     * @param string $auteurN
-     */
-    public function setAuteurN($auteurN)
-    {
-        $this->auteurN = $auteurN;
-    }
-
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="auteurn", type="string")
+     * @ORM\Column(name="auteurn", type="string", length=255, nullable=false)
      */
-    private $auteurN;
-
+    private $auteurn;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="auteur", type="integer")
+     * @ORM\Column(name="auteur", type="integer", nullable=false)
      */
     private $auteur;
 
     /**
-     * @return Article
-     */
-    public function getArticle()
-    {
-        return $this->article;
-    }
-
-    /**
-     * @param Article $article
-     */
-    public function setArticle($article)
-    {
-        $this->article = $article;
-    }
-
-
-
-
-    /**
-     * Get id.
+     * @var \Article
      *
-     * @return int
+     * @ORM\ManyToOne(targetEntity="Article")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     * })
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $article;
 
-    /**
-     * Set text.
-     *
-     * @param string $text
-     *
-     * @return CommentaireB
-     */
-    public function setText($text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
-    /**
-     * Get text.
-     *
-     * @return string
-     */
-    public function getText()
-    {
-        return $this->text;
-    }
 
 }

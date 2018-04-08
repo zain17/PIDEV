@@ -5,12 +5,12 @@ namespace EntiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Utilisateur
+ * Utilisateurauth
  *
- * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1D1C63B392FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_1D1C63B3A0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_1D1C63B3FF631228", columns={"etablissement_id"}), @ORM\UniqueConstraint(name="UNIQ_1D1C63B3C05FB297", columns={"confirmation_token"})})
+ * @ORM\Table(name="utilisateurauth", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_98CBBAEE92FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_98CBBAEEA0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_98CBBAEEC05FB297", columns={"confirmation_token"})})
  * @ORM\Entity
  */
-class Utilisateur
+class Utilisateurauth
 {
     /**
      * @var int
@@ -20,27 +20,6 @@ class Utilisateur
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="photo_profil", type="string", length=255, nullable=true)
-     */
-    private $photoProfil;
-
-    /**
-     * @var float|null
-     *
-     * @ORM\Column(name="langitude", type="float", precision=10, scale=0, nullable=true)
-     */
-    private $langitude;
-
-    /**
-     * @var float|null
-     *
-     * @ORM\Column(name="latitude", type="float", precision=10, scale=0, nullable=true)
-     */
-    private $latitude;
 
     /**
      * @var string
@@ -118,16 +97,6 @@ class Utilisateur
      * @ORM\Column(name="roles", type="array", nullable=false)
      */
     private $roles;
-
-    /**
-     * @var \Etablissement
-     *
-     * @ORM\ManyToOne(targetEntity="Etablissement")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
-     * })
-     */
-    private $etablissement;
 
 
 }

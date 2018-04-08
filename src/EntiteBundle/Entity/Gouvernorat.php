@@ -5,12 +5,12 @@ namespace EntiteBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Photo
+ * Gouvernorat
  *
- * @ORM\Table(name="photo")
+ * @ORM\Table(name="gouvernorat")
  * @ORM\Entity
  */
-class Photo
+class Gouvernorat
 {
     /**
      * @var int
@@ -22,11 +22,11 @@ class Photo
     private $id;
 
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(name="chemin", type="string", length=255, nullable=true)
+     * @ORM\Column(name="name", type="string", length=100, nullable=false)
      */
-    private $chemin;
+    private $name;
 
 
 }
