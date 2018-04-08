@@ -3,131 +3,168 @@
 namespace EntiteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User;
 
 /**
  * Utilisateur
  *
- * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1D1C63B392FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_1D1C63B3A0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_1D1C63B3FF631228", columns={"etablissement_id"}), @ORM\UniqueConstraint(name="UNIQ_1D1C63B3C05FB297", columns={"confirmation_token"})})
- * @ORM\Entity
+ * @ORM\Table(name="utilisateur")
+ * @ORM\Entity(repositoryClass="EntiteBundle\Repository\UtilisateurRepository")
  */
-class Utilisateur
+class Utilisateur extends User
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
+    protected $id;
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(name="photo_profil", type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $prenom;
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numero;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
      */
     private $photoProfil;
-
     /**
-     * @var float|null
+     * @var float
      *
-     * @ORM\Column(name="langitude", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $langitude;
-
     /**
-     * @var float|null
+     * @var float
      *
-     * @ORM\Column(name="latitude", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $latitude;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=180, nullable=false)
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="etablissement")
      */
-    private $username;
+    private $experiences;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="experience")
+     */
+    private $revues;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username_canonical", type="string", length=180, nullable=false)
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Utilisateur", mappedBy="utilisateur")
      */
-    private $usernameCanonical;
-
+    private $evenements;
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=180, nullable=false)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email_canonical", type="string", length=180, nullable=false)
-     */
-    private $emailCanonical;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="enabled", type="boolean", nullable=false)
-     */
-    private $enabled;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="salt", type="string", length=255, nullable=true)
-     */
-    private $salt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=false)
-     */
-    private $password;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="last_login", type="datetime", nullable=true)
-     */
-    private $lastLogin;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="confirmation_token", type="string", length=180, nullable=true)
-     */
-    private $confirmationToken;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="password_requested_at", type="datetime", nullable=true)
-     */
-    private $passwordRequestedAt;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(name="roles", type="array", nullable=false)
-     */
-    private $roles;
-
-    /**
-     * @var \Etablissement
-     *
-     * @ORM\ManyToOne(targetEntity="Etablissement")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
-     * })
+     * @ORM\OneToOne(targetEntity="EntiteBundle\Entity\Etablissement", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $etablissement;
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
+    /**
+     * Set photoProfil
+     *
+     * @param string $photoProfil
+     *
+     * @return Utilisateur
+     */
+    public function setPhotoProfil($photoProfil)
+    {
+        $this->photoProfil = $photoProfil;
 
+        return $this;
+    }
+
+    /**
+     * Get photoProfil
+     *
+     * @return string
+     */
+    public function getPhotoProfil()
+    {
+        return $this->photoProfil;
+    }
+
+    /**
+     * Set langitude
+     *
+     * @param float $langitude
+     *
+     * @return Utilisateur
+     */
+    public function setLangitude($langitude)
+    {
+        $this->langitude = $langitude;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEtablissement()
+    {
+        return $this->etablissement;
+    }
+
+    /**
+     * @param mixed $etablissement
+     */
+    public function setEtablissement($etablissement)
+    {
+        $this->etablissement = $etablissement;
+    }
+
+    /**
+     * Get langitude
+     *
+     * @return float
+     */
+    public function getLangitude()
+    {
+        return $this->langitude;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param float $latitude
+     *
+     * @return Utilisateur
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return float
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
 }
