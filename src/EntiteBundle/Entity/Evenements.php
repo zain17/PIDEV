@@ -97,10 +97,14 @@ class Evenements
     private $brochure;
 
     /**
-     * @ORM\OneToMany(targetEntity="EvenementBundle\Entity\CommentaireE", mappedBy="Evenements")
+     * @ORM\OneToMany(targetEntity="EvenementBundle\Entity\CommentaireE", mappedBy="eve")
      */
     private $commentaire;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Utilisateur", inversedBy="evenements")
+     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id", nullable=true)
+     */
+    private $utilisateur;
 
     /**
      * Get id
@@ -393,5 +397,29 @@ class Evenements
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Set utilisateur.
+     *
+     * @param \EntiteBundle\Entity\Utilisateur|null $utilisateur
+     *
+     * @return Evenements
+     */
+    public function setUtilisateur(\EntiteBundle\Entity\Utilisateur $utilisateur = null)
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur.
+     *
+     * @return \EntiteBundle\Entity\Utilisateur|null
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
     }
 }

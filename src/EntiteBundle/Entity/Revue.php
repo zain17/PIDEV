@@ -7,41 +7,39 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Revue
  *
- * @ORM\Table(name="revue")
- * @ORM\Entity(repositoryClass="EntiteBundle\Repository\RevueRepository")
+ * @ORM\Table(name="revue", indexes={@ORM\Index(name="IDX_76244F05FB88E14F", columns={"utilisateur_id"}), @ORM\Index(name="IDX_76244F05FF631228", columns={"etablissement_id"})})
+ * @ORM\Entity
  */
 class Revue
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
     /**
-     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Utilisateur", inversedBy="revues")
-     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id",nullable=false)
+     * @var \Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     * })
      */
     private $utilisateur;
+
     /**
-     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Etablissement", inversedBy="revues")
-     * @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id",nullable=false)
+     * @var \Etablissement
+     *
+     * @ORM\ManyToOne(targetEntity="Etablissement")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="etablissement_id", referencedColumnName="id")
+     * })
      */
     private $etablissement;
-    /**
-     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Commentaire", mappedBy="revue")
-     */
-    private $comments;
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-}
 
+
+}
