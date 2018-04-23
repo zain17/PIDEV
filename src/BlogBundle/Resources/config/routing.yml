@@ -13,6 +13,9 @@ blog_supprimerArticle:
 blog_listeArticles:
     path: /listeArticles
     defaults: { _controller: BlogBundle:Blog:listeArticle }
+blog_listeArticles1:
+    path: /listeArticles/
+    defaults: { _controller: BlogBundle:Blog:listeArticle }
 blog_index:
     path: /
     defaults: { _controller: BlogBundle:Blog:listeArticle }
