@@ -70,8 +70,14 @@ class BlogController extends Controller
         if ($request->get('ctext') != null) {
             $commentaire = new CommentaireB();
             $commentaire->setText($request->get('ctext'));
-            $commentaire->setAuteur($this->getUser()->getId());
-            $commentaire->setAuteurN($this->getUser()->getUsername());
+            if ($request->get('mobile') == 1) {
+                $commentaire->setAuteur($request->get('userid'));
+                $commentaire->setAuteurN($request->get('username'));
+            }
+            else {
+                $commentaire->setAuteur($this->getUser()->getId());
+                $commentaire->setAuteurN($this->getUser()->getUsername());
+            }
             $commentaire->setArticle($article);
             $em = $this->getDoctrine()->getManager();
             $em->persist($commentaire);
