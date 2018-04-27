@@ -4,8 +4,11 @@ namespace ProfilBundle\Controller;
 
 use EntiteBundle\Entity\Utilisateur;
 use EntiteBundle\Form\UtilisateurType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class UtilisateurController extends Controller
 {
@@ -67,6 +70,16 @@ class UtilisateurController extends Controller
         return $this->render('ProfilBundle:Utilisateur:list.html.twig', array(
             "utilisateurs"=>$utilisateurs
         ));
+    }
+
+    public function allAction()
+    {
+        $em= $this->getDoctrine()->getManager();
+        $utilisateurs=$em->getRepository("EntiteBundle:Utilisateur")
+            ->findAll();
+        $serializer=new Serializer([new ObjectNormalizer()]);
+        $formatted=$serializer->normalize($utilisateurs);
+        return new JsonResponse($formatted);
     }
 
 }

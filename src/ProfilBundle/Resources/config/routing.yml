@@ -4,6 +4,9 @@ ajouter_etab:
 list_etab:
     path:     /etablissement/list
     defaults: { _controller: ProfilBundle:Etablissement:listAll }
+alljson_etab:
+    path:     /etablissement/alljson
+    defaults: { _controller: ProfilBundle:Etablissement:alljson }
 best_etab:
     path:     /
     defaults: { _controller: ProfilBundle:Etablissement:list }
@@ -46,3 +49,7 @@ modifier_utilisateur:
 list_utilisateur:
     path:     /utilisateur/list
     defaults: { _controller: ProfilBundle:Utilisateur:list }
+
+all_Json_utilisateur:
+    path:     /utilisateur/alljson
+    defaults: { _controller: ProfilBundle:Utilisateur:all }
