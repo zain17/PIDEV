@@ -168,12 +168,6 @@ class Article
      */
     private $tag;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
 }

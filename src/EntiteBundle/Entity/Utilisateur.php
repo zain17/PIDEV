@@ -57,12 +57,6 @@ class Utilisateur extends User
      * @ORM\JoinColumn(nullable=true)
      */
     private $etablissement;
-
-
-
-
-
-
     /**
      * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="utilisateur")
      */
