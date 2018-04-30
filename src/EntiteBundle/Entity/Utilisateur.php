@@ -53,23 +53,35 @@ class Utilisateur extends User
     private $latitude;
 
     /**
-     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="etablissement")
-     */
-    private $experiences;
-    /**
-     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Revue", mappedBy="experience")
-     */
-    private $revues;
-
-    /**
-     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Utilisateur", mappedBy="utilisateur")
-     */
-    private $evenements;
-    /**
      * @ORM\OneToOne(targetEntity="EntiteBundle\Entity\Etablissement", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $etablissement;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $prenom;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numero;
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Experience", mappedBy="utilisateur")
+     */
+    private $experiences;
+    /**
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\Evenements", mappedBy="utilisateur")
+     */
+    private $evenements;
+
     /**
      * Get id
      *
@@ -252,41 +264,11 @@ class Utilisateur extends User
         return $this->experiences;
     }
 
-    /**
-     * Add revue.
-     *
-     * @param \EntiteBundle\Entity\Revue $revue
-     *
-     * @return Utilisateur
-     */
-    public function addRevue(\EntiteBundle\Entity\Revue $revue)
-    {
-        $this->revues[] = $revue;
 
-        return $this;
-    }
 
-    /**
-     * Remove revue.
-     *
-     * @param \EntiteBundle\Entity\Revue $revue
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeRevue(\EntiteBundle\Entity\Revue $revue)
-    {
-        return $this->revues->removeElement($revue);
-    }
 
-    /**
-     * Get revues.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getRevues()
-    {
-        return $this->revues;
-    }
+
+
 
     /**
      * Add evenement.

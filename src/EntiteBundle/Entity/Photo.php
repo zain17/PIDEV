@@ -8,81 +8,25 @@ use Doctrine\ORM\Mapping as ORM;
  * Photo
  *
  * @ORM\Table(name="photo")
- * @ORM\Entity(repositoryClass="EntiteBundle\Repository\PhotoRepository")
+ * @ORM\Entity
  */
 class Photo
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="chemin", type="string",nullable=true)
+     * @ORM\Column(name="chemin", type="string", length=255, nullable=true)
      */
     private $chemin;
 
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set chemin
-     *
-     * @param string $chemin
-     *
-     * @return Photo
-     */
-    public function setChemin($chemin)
-    {
-        $this->chemin = $chemin;
-
-        return $this;
-    }
-
-    /**
-     * Get chemin
-     *
-     * @return string
-     */
-    public function getChemin()
-    {
-        return $this->chemin;
-    }
-
-    /**
-     * Set etablissement
-     *
-     * @param \EntiteBundle\Entity\Etablissement $etablissement
-     *
-     * @return Photo
-     */
-    public function setEtablissement(\EntiteBundle\Entity\Etablissement $etablissement = null)
-    {
-        $this->etablissement = $etablissement;
-
-        return $this;
-    }
-
-    /**
-     * Get etablissement
-     *
-     * @return \EntiteBundle\Entity\Etablissement
-     */
-    public function getEtablissement()
-    {
-        return $this->etablissement;
-    }
 }

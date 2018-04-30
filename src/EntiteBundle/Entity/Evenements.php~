@@ -100,7 +100,11 @@ class Evenements
      * @ORM\OneToMany(targetEntity="EvenementBundle\Entity\CommentaireE", mappedBy="Evenements")
      */
     private $commentaire;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Utilisateur", inversedBy="evenements")
+     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id", nullable=true)
+     */
+    private $utilisateur;
 
     /**
      * Get id
@@ -350,5 +354,48 @@ class Evenements
     public function getTel()
     {
         return $this->tel;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commentaire = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add commentaire.
+     *
+     * @param \EvenementBundle\Entity\CommentaireE $commentaire
+     *
+     * @return Evenements
+     */
+    public function addCommentaire(\EvenementBundle\Entity\CommentaireE $commentaire)
+    {
+        $this->commentaire[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire.
+     *
+     * @param \EvenementBundle\Entity\CommentaireE $commentaire
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCommentaire(\EvenementBundle\Entity\CommentaireE $commentaire)
+    {
+        return $this->commentaire->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaire.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }

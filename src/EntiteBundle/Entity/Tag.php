@@ -1,76 +1,64 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aminos
- * Date: 2/22/18
- * Time: 10:24 PM
- */
 
 namespace EntiteBundle\Entity;
 
 use Beelab\TagBundle\Tag\TagInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="tag")
- * @ORM\Entity(repositoryClass="EntiteBundle\Repository\TagRepository")
+ * Tag
+ *
+ * @ORM\Table(name="tag", uniqueConstraints={@ORM\UniqueConstraint(name="uniqueTag", columns={"name"})})
+ * @ORM\Entity
  */
-class Tag implements  TagInterface
+class Tag implements TagInterface
 {
     /**
      * @var int
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $id;
+    private $id;
 
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Tag")
-     * @ORM\JoinColumn(onDelete="CASCADE")
-     */
-    protected $articles;
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
      * @ORM\Column(unique=true)
      */
-    protected $name;
+    private $article;
 
     /**
-     * @return string
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="tagTarget")
      */
-    public function __toString()
+    private $tagSource;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
     {
-        return $this->name;
+        $this->article = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tagSource = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param string $name
-     */
     public function setName($name)
     {
-        $this->name = $name;
+        // TODO: Implement setName() method.
     }
 
-    /**
-     * @return string
-     */
     public function getName()
     {
-        return $this->name;
+        // TODO: Implement getName() method.
     }
 }
