@@ -57,19 +57,9 @@ class Utilisateur extends User
      * @ORM\JoinColumn(nullable=true)
      */
     private $etablissement;
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $prenom;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $numero;
+
+
 
 
 
