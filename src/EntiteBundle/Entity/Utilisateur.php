@@ -26,6 +26,18 @@ class Utilisateur extends User
      *
      * @ORM\Column(type="string", nullable=true)
      */
+    private $prenom;
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numero;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
     private $photoProfil;
     /**
      * @var float
@@ -39,6 +51,7 @@ class Utilisateur extends User
      * @ORM\Column(type="float", nullable=true)
      */
     private $latitude;
+
     /**
      * @ORM\OneToOne(targetEntity="EntiteBundle\Entity\Etablissement", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)

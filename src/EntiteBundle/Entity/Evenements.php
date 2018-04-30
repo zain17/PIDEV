@@ -100,18 +100,9 @@ class Evenements
      * @ORM\OneToMany(targetEntity="EvenementBundle\Entity\CommentaireE", mappedBy="eve")
      */
     private $commentaire;
-//    /**
-//     * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Utilisateur", inversedBy="evenements")
-//     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id", nullable=true)
-//     */
-//    private $utilisateur;
     /**
-     * @var \Utilisateur
-     *
      * @ORM\ManyToOne(targetEntity="EntiteBundle\Entity\Utilisateur", inversedBy="evenements")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
-     * })
+     * @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id", nullable=true)
      */
     private $utilisateur;
 

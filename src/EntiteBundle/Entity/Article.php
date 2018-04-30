@@ -13,6 +13,89 @@ use Doctrine\ORM\Mapping as ORM;
 class Article
 {
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $tags;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="EntiteBundle\Entity\CommentaireB", mappedBy="article")
+     */
+    protected $commentaires;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
+    /**
+     * @param ArrayCollection $commentaires
+     */
+    public function setCommentaires($commentaires)
+    {
+        $this->commentaires = $commentaires;
+    }
+
+    // note: if you generated code with SensioGeneratorBundle, you need
+    // to replace "Tag" with "TagInterface" where appropriate
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+        $this->created = new \DateTime('now');
+        $this->updated = new \DateTime('now');
+        $this->commentaires = new ArrayCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addTag(TagInterface $tag)
+    {
+        $this->tags[] = $tag;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeTag(TagInterface $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasTag(TagInterface $tag)
+    {
+        return $this->tags->contains($tag);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getTagNames()
+    {
+        return empty($this->tagsText) ? [] : array_map('trim', explode(',', $this->tagsText));
+    }
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)

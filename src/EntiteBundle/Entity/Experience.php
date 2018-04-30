@@ -24,7 +24,7 @@ class Experience
     /**
      * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="experiences")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
      * })

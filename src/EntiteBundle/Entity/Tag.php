@@ -32,7 +32,7 @@ class Tag implements TagInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="tag")
+     * @ORM\Column(unique=true)
      */
     private $article;
 
