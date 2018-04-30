@@ -46,3 +46,7 @@ modifier_utilisateur:
 list_utilisateur:
     path:     /utilisateur/list
     defaults: { _controller: ProfilBundle:Utilisateur:list }
+
+all_Json_utilisateur:
+    path:     /utilisateur/alljson
+    defaults: { _controller: ProfilBundle:Utilisateur:all }

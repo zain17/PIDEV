@@ -68,6 +68,12 @@ class Etablissement
      */
     private $horraire;
     /**
+     * @var datetime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $horraireF;
+    /**
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
@@ -549,5 +555,29 @@ class Etablissement
     public function getPhoto()
     {
         return $this->photo;
+    }
+
+    /**
+     * Set horraireF.
+     *
+     * @param \DateTime|null $horraireF
+     *
+     * @return Etablissement
+     */
+    public function setHorraireF($horraireF = null)
+    {
+        $this->horraireF = $horraireF;
+
+        return $this;
+    }
+
+    /**
+     * Get horraireF.
+     *
+     * @return \DateTime|null
+     */
+    public function getHorraireF()
+    {
+        return $this->horraireF;
     }
 }

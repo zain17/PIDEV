@@ -22,6 +22,7 @@ class Article implements  TaggableInterface
      * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $tags;
 

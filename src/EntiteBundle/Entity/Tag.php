@@ -38,7 +38,7 @@ class Tag implements  TagInterface
     /**
      * @var string
      *
-     * @ORM\Column()
+     * @ORM\Column(unique=true)
      */
     protected $name;
 

@@ -10,8 +10,12 @@ use EntiteBundle\Entity\CommentaireB;
 use EntiteBundle\Entity\Tag;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class BlogController extends Controller
 {
@@ -35,6 +39,10 @@ class BlogController extends Controller
                 for ($i = 0; $i < sizeof($arrs); $i++) {
                     $tt = new Tag();
                     $tt->setName($arrs[$i]);
+                    $temp = $this->getDoctrine()->getRepository(Tag::class)->findBy(["name"=>$tt->getName()]);
+                    if ($temp)
+                        $tt = $temp[0];
+                    else
                     $this->getDoctrine()->getManager()->persist($tt);
                     $article->addTag($tt);
                 }
@@ -62,8 +70,14 @@ class BlogController extends Controller
         if ($request->get('ctext') != null) {
             $commentaire = new CommentaireB();
             $commentaire->setText($request->get('ctext'));
-            $commentaire->setAuteur($this->getUser()->getId());
-            $commentaire->setAuteurN($this->getUser()->getUsername());
+            if ($request->get('mobile') == 1) {
+                $commentaire->setAuteur($request->get('userid'));
+                $commentaire->setAuteurN($request->get('username'));
+            }
+            else {
+                $commentaire->setAuteur($this->getUser()->getId());
+                $commentaire->setAuteurN($this->getUser()->getUsername());
+            }
             $commentaire->setArticle($article);
             $em = $this->getDoctrine()->getManager();
             $em->persist($commentaire);
@@ -71,6 +85,16 @@ class BlogController extends Controller
         }
 
 
+        if ($request->get('mobile') == 1) {
+           $normalizer = new ObjectNormalizer();
+           $normalizer->setCircularReferenceHandler(function ($object) {
+               return $object->getCommentaires();
+           });
+           $serializer = new Serializer(array(new DateTimeNormalizer(), $normalizer));
+           $data = $serializer->normalize($article, null, ['attributes' => ['id', 'titre', 'texte', 'commentaires']]);
+           return new JsonResponse($data);
+        }
+        else
         return $this->render('@Blog/Article/lireArticle.html.twig', array('article' => $article, 'commentaires'=>$article->getCommentaires()));
 
     }
@@ -98,7 +122,10 @@ class BlogController extends Controller
             $commentaire->setText($request->get('ctext'));
             $em->persist($commentaire);
             $em->flush();
-            return $this->redirectToRoute('blog_lireArticle', ["id"=>$request->get('articleid')]);
+            if ($request->get('mobile') == 1)
+                return new JsonResponse("Success");
+            else
+                return $this->redirectToRoute('blog_lireArticle', ["id"=>$request->get('articleid')]);
 
         }
         /*
@@ -172,7 +199,10 @@ class BlogController extends Controller
         $articleid = $repo->find($id)->getArticle()->getId();
         $em->remove($repo->find($id));
         $em->flush();
-        return $this->redirectToRoute("blog_lireArticle", ["id"=>$articleid]);
+        if ($request->get('mobile') == 1)
+            return new JsonResponse("Success");
+        else
+            return $this->redirectToRoute("blog_lireArticle", ["id"=>$articleid]);
 
 
     }
@@ -180,7 +210,7 @@ class BlogController extends Controller
     public function listeArticleAction(Request $request) {
 
 
-        if (!$request->isXmlHttpRequest()) {
+        if (!$request->isXmlHttpRequest() && $request->get('rech') != 1) {
             $em = $this->get('doctrine.orm.entity_manager');
             $dql = "SELECT a FROM EntiteBundle:Article a";
             $query = $em->createQuery($dql);
@@ -191,14 +221,29 @@ class BlogController extends Controller
                 $request->query->getInt('page', 1),
                 3
             );
-            if ($this->getUser())
-                echo($this->getUser()->getUsername());
+            //if ($this->getUser())
+            //    echo($this->getUser()->getUsername());
+            if ($request->get('mobile') == 1) {
+                $articles = $query->getResult();
+                if (sizeof($articles)) {
+                    $normalizer = new ObjectNormalizer();
+                    $normalizer->setCircularReferenceHandler(function ($object) {
+                        return $object->getCommentaires();
+                    });
+                    $serializer = new Serializer(array(new DateTimeNormalizer(), $normalizer));
+                    $data = $serializer->normalize($articles, null, ['attributes' => ['id', 'titre', 'texte', 'commentaires']]);
+                    return new JsonResponse($data);
+                }
+                else
+                    return new JsonResponse("Empty");
+            }
 
+            else
             return $this->render('@Blog/Article/listeArticles.html.twig', array(
                 'pagination' => $pagination
             ));
         }
-        else {
+        else if ($request->isXmlHttpRequest() || $request->get('rech') == 1) {
             $em = $this->get('doctrine.orm.entity_manager');
             $query = null;
 
@@ -227,20 +272,35 @@ class BlogController extends Controller
                // $query = $repo->findByTag($request->get('tag'));
             }
 
-            $paginator = $this->get('knp_paginator');
-            $pagination = $paginator->paginate(
-                $query,
-                $request->query->getInt('page', 1),
-                3
-            );
-            if ($this->getUser())
-                echo($this->getUser()->getUsername());
 
-             $template = $this->render('@Blog/Article/paginationTemplate.html.twig', array(
-                'pagination' => $pagination
-            ))->getContent();
 
-             return new Response($template);
+             if ($request->get('mobile') == 1) {
+                 $articles = $query->getResult();
+                 if (sizeof($articles) > 0) {
+                     $normalizer = new ObjectNormalizer();
+                     $normalizer->setCircularReferenceHandler(function ($object) {
+                         return $object->getCommentaires();
+                     });
+                     $serializer = new Serializer(array(new DateTimeNormalizer(), $normalizer));
+                     $data = $serializer->normalize($articles, null, ['attributes' => ['id', 'titre', 'texte', 'commentaires']]);
+                     return new JsonResponse($data);
+                 }
+                 else
+                     return new JsonResponse("Empty");
+             }
+             else {
+                 $paginator = $this->get('knp_paginator');
+                 $pagination = $paginator->paginate(
+                     $query,
+                     $request->query->getInt('page', 1),
+                     3
+                 );
+                 $template = $this->render('@Blog/Article/paginationTemplate.html.twig', array(
+                     'pagination' => $pagination
+                 ))->getContent();
+                 return new Response($template);
+             }
+
 
         }
     }
